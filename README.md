@@ -1,4 +1,5 @@
-data-visualisation-with-processing
-==================================
+Generative-Art-Processing
+=========================
 
-Course on Processing &amp; Data Visualisation for complete beginners, made for OTS Brussels.
+Material for the Data Viz Processing course OTS Brussels.
+

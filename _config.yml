@@ -1,0 +1,10 @@
+title: Data Visualisation Workshop with Processing
+baseurl: http://opentechschool-brussels.github.io/data-visualisation-with-processing 
+
+markdown: redcarpet
+redcarpet:
+   extensions: ["no_intra_emphasis", "fenced_code_blocks", "disable_indented_code_blocks", "strikethrough", "autolink"]
+
+pygments: true
+
+permalink: title.html
