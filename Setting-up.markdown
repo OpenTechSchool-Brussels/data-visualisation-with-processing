@@ -43,9 +43,26 @@ What did it do? If you run that (pressing the icon, “run” in the menu or wit
 What you called is a function, and you fed it with parameters, four to be precise. The function is rect and you feed it with parametres in between parenthesis, separated by a comma. So if the function had no parameters, it should be written as `rect()`. You can try to run such a function, Processing will shout at you (gently, but in red) telling you that no, you can’t do that in this house, and that rect is patiently waiting for four parameters. At the end of the line lie a quiet `;`. Its function is to say that this particular command has finished. A common mistake is to forget to put it at the end of commands.
 
 
-##c) Data Visualisation##
-TO BE DONE
+##d) Data Visualisation
+        Its aim & its craft
+            GEOMETRY
+    YOUR SENSIBILITY: most important
+        The story (?) / Usefulness
+            The process (get, crunch, organise...)
+--most principles...
+        Gestalt (or the other weird german word Pänz-something)
+        Colors
+                Size
+##e) Data (input)
+            DataSet / DataBase
+                Kind of data (stream, text, graphs network/trees, tables, CSV, JSON, XML)
+            OpenData
+Variety of data, and of data type, and of info you can get from it.
+http://drum.lib.umd.edu/bitstream/1903/5784/1/TR_96-66.pdf
 
-##d) The code as a medium##
-It is important to see code as what it is: a medium that allow for multiple kind of creation, art & design among others. Having a good grasp of what code is allow you to better understand its possibilities and precise your sensibility. Code is a language, a medium, with which you can do many things. You can draw, write poems or sign contracts with a pen. Same with code. And it’s by its practice, its knowledge and the culture you will create that will emerge interesting digital art, design, prototypes... Many thing can be said of the nature of code, and while that would be very interesting to developp, that is out of the scope of this workshop. While that is true, I hope this workshop will make you see how poetic code can be, even if it’s sometimes frustrating: as any deep and complex language is when you are learning it.
+##f) Medium (output)
+    Static Vs Dynamic Vs Interactive
+    Print, website, tablet/smartphone, computer screen, projections...
+
+On a side note, it is important to see code as what it is: a medium that allow for multiple kind of creation, art & design among others. Having a good grasp of what code is allow you to better understand its possibilities and precise your sensibility. Code is a language, a medium, with which you can do many things. You can draw, write poems or sign contracts with a pen. Same with code. And it’s by its practice, its knowledge and the culture you will create that will emerge interesting digital art, design, prototypes... Many thing can be said of the nature of code, and while that would be very interesting to developp, that is out of the scope of this workshop. While that is true, I hope this workshop will make you see how poetic code can be, even if it’s sometimes frustrating: as any deep and complex language is when you are learning it.
 
