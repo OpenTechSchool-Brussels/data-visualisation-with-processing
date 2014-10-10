@@ -228,6 +228,29 @@ void setup() {
   }
 }
 ```
+If you want to reset this data by pressing a key, don't forget to update the `keyPressed()` function with that new code.
+
+Now let's display it. Same stuff than before. Just remember that we need to loop over an array of size 100, not k.
+
+```java
+void draw() {
+  background(0);
+  for (int j=0; j<20; j++) {
+    for (int i=0; i<100; i++) {  
+      // 1) Uniform randomness
+      rect( 100+i*4, 150 - freqUniform[i]/2, 3, freqUniform[i]/2);
+      
+      // 2) Gaussian randomness
+//      rect( 100+i*4, 300 - freqGaussian[i]/2, 3, freqGaussian[i]/2);
+
+      // 3) Perlin noise
+      rect( 100+i*4, 450 - freqPerlin[i]/2, 3, freqPerlin[i]/2);
+         
+    }
+  }
+ 
+} 
+```
 
 Neat isn't it? Yes it is. But wait, we lost something along the lines... indeed, we had to comment out the calculus about the Gaussian randomness. Why is that so? Well, there are some times value getting outside of the [0;100] interval, messing with the indexing of the array. What to do then? Well, we need to filter the data. For that, we need to test it, the basic way to do so is called a conditional test. In lay man terms, it means "If a condition is met, then do something (and sometimes: else do something else)". We need a value between 0 and 100, so we need to test for it to be superior than 0 and inferior to 100.
 
