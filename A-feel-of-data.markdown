@@ -10,7 +10,7 @@ This is the most important section, and might end up being the whole of the work
 In the following, we will see many simple examples, fitting both learning how to code and getting a feel of what data and its visualization can mean. 
 
 ##a) Basic structures of data
-Before using data and visualizing it, we need to have some. In programming languages, we have many ways to store information, let's review the basic one and create some data set we'll be using in this section.
+Before using data and visualizing it, we need to have some. In programming languages, we have many ways to store information, let's review the basic ones. See this part as getting your first feel of how data is stored, a basic inspiration on how to later use it.
 
 The atomic information holder is called a variable. A variable is defined by three things. Its name, what kind of information it stores, and its value. You can store text, integers, float, colors, vectors ... many many things. A complete definition of a variable is as follow: `float myVariable = 20.45;`.
 
@@ -20,14 +20,35 @@ While there are many possible types, we'll be using manly three : `floats` for d
 
 Not getting into too much details, but variables have scopes. Where you define them define where you can use them. If you want to use them locally, define them at a specific place in your program, if you want to use them everywhere, then define them at the root, at the start of your program.
 
+Variables are good for atom of information but usually in Data Visualization, we have a loooot of data or in more precise terms : a set of data. We need a way to store this set. We could define a load of variables, but it'd be very tiring and hard to handle. Instead, for this usage we have arrays. Arrays allow you to store a finite number of variables and access them one by one using an index.
 
-Let's learn or review a few principales about data: variables, arrays & objects. For those that will be discovering those principles, don't overthink how complicated it might first appears. Even more, you're already handling data while learning this part, and it's part of creating your most valuable asset: your sensibility.
+```java
+    float[] arrayOfFloats = new float[10]; // Defines an array of floats, of size 10.
+    float rez = ArrayOfFloats[4]; // Access to the fifth value.
+    ArrayOfFloats[5] = 4; // Modify one of its value.
+```
 
-Variables Numbers & Text
+Two comments here. First, what about the gray comments after the `//`? Well they are what they are: comments. Whatever you write after `//` will be discarded by your program. Why using them then? They can be very handy for describing part of your program, explaining stuff, or just taking notes! We'll be seeing a lot of them.
 
-Arrays & Object
+Second, No, there was no mistake in the writing (not this time at least), the arrays index start at `0`, not `1`. So if you call `arrayOfFloats[1]`, you will not get the first element, but the second. This is why to call the fifth value, we code `arrayOfFloats[4]`.
 
 #b) Show me the numbers!
+
+Great, we have ways to store data. Now, let's use that to create our first data set, and visualize it. Processing has a few ways to generate random process, let's generate a few data set and use this occasion to study and visualize them.
+
+```java
+//randomness in Processing
+// To generate a random value between min & max
+random(min,max);
+
+// To generate value from a Gaussian with mean 0 and deviation1.
+randomGaussian();
+// What's a Gaussian? We'll try to understand when visualizing it!
+
+// To generate Perlin noise
+
+```
+
 FOR LOOP
 Display text numbers : random data
     Display many sets of data
