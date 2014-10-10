@@ -6,7 +6,7 @@ num: 1
 
 Welcome soldier, you’ve done already so much, and yet your country await more for you. In this section (guess what) you’ll learn about the canvas, and how to draw. Learn, prosper, and spread the visuals!
 
-##o) the coordinate system##
+##o) The coordinate system##
 So, tough luck, here no pencil, if you want to draw something, you’ll need to use …. maths. Well, at least numbers.
 You will draw using coordinates. Basically, your screen as a grid, full of pixel. In order to pinpoint to one particular pixel, you need two informations: at which height of the screen it is and at which width of the screen. Those are coordinates, symbolised as the couple (x,y), x on the horizontal axis, and y on the vertical one. This is in the end a classical two dimensional system. The origin (x=0 and y=0) is on the top left corner of your screen. Positive x goes toward the right, and positive y goes toward the bottom of your screen. Yep, a bit confusing.
 It’ll all make sense (or at least a bit more) when you’ll start drawing shapes. And guess what, it’s the next section!
