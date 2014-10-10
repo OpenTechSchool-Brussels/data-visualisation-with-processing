@@ -36,18 +36,42 @@ Second, No, there was no mistake in the writing (not this time at least), the ar
 
 Great, we have ways to store data. Now, let's use that to create our first data set, and visualize it. Processing has a few ways to generate random process, let's generate a few data set and use this occasion to study and visualize them.
 
+Let's have a look at the three process we'll be studying. And let's have a basic feel of them with `println` a function that
+
 ```java
 //randomness in Processing
 // To generate a random value between min & max
-random(min,max);
+float min = 0; float max = 10;
+println( random(min,max);
 
 // To generate value from a Gaussian with mean 0 and deviation1.
 randomGaussian();
 // What's a Gaussian? We'll try to understand when visualizing it!
 
 // To generate Perlin noise
+float offset = 0.1;
+noise(offset);
+// Same thing here, we'll have to visualize it to understand it!
+```
+
+You can imagine that if we had to fit one by one those values in an array, that would be again quite tiresome. Since computers are made to automate repetitive task, there must be a way to avoid doing that! And indeed there is, we will need in our case to loop over a simple process (storing data in the array) and just change one little thing at each step (where to store it, using a counter). For that we will use what is called a for loop.
+
+```java
+
 
 ```
+So, what is such block of code doing? A for loop will repeat a block of code until a condition is met. It can be understood in english as: "First do something (the initialisation). Then repeatedly execute code (the block of code) until I decide you’re finished (the condition). Each time you have finished executing the code between braces, do one thing in particular (usually an iteration over a counter)".
+
+To be more precise, a for loop is defined by 4 components:
+
+* First the *initialisation*, here `int i = 0;`. We define and instantiate here a new variable. Not a float, but an integer. We saw this type earlier with relation to colors. An integer is defined by its type: int, it is a variable with no fractional part, no numbers after the coma.
+
+* Then you have the *condition*, here `i < 100`. A condition is something that is true or false. In our case, we use the mathematical symbol < to check if a value is inferior to another one. Other symbol allow for different test (such as > for superior to, or == to test the equality. Not to be confused with = for affection, a classic mistake.)
+
+* Then you have the *update*, here (as often) an iteration over an index: `i = i + 1;`.
+
+* Last,  you have the *block of code*, located between braces `{ }`, that is executed by the for loop.
+
 
 FOR LOOP
 Display text numbers : random data
