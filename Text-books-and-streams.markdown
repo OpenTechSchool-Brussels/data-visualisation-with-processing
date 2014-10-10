@@ -5,6 +5,13 @@ num: 4
 
 ---
 
+DNA, Fisher's Iris Data set, Text
+
+Tree (for text, words that follow ...)
+
+Something about ADN ?
+
+
 
         Data: Twitter feed
             http://blog.blprnt.com/blog/blprnt/quick-tutorial-twitter-processing
