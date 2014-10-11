@@ -77,7 +77,7 @@ void setup() {
   fill(255);
   noStroke();
   
-  k = 1000;
+  k = 100000;
 
   // Creating our data sets
   dataUniform = new float[k];
