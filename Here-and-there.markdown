@@ -27,7 +27,7 @@ Try to open your data file in a text editor. This data file is a CSV (Comma Sepa
 
 ````java
 
-table dataWifi;
+Table dataWifi;
 
 void setup() {
   size(800, 600);
@@ -39,9 +39,9 @@ void setup() {
 
   // println allow to display a string
   // concatenating strings is done with +
-  println(tableWifi.getRowCount() + " total rows in table"); 
+  println(dataWifi.getRowCount() + " total rows in table"); 
 
-  for (TableRow row : tableWifi.rows()) {  
+  for (TableRow row : dataWifi.rows()) {  
     // Each of the row's get function takes the field name as input.
     String name = row.getString("name");
     String street = row.getString("street");
