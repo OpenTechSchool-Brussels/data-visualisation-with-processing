@@ -11,20 +11,130 @@ We have in mind to let you play with three kind of text: twitter streams, books 
 
 ## a) Using libraries, again & Twitter dev stuff
 
-First of all .... sometimes you care, sometimes you don't. While at OTS we pride ourselves on explaining each line of code, sometimes while using more heavy libraries, some part of code might appear that are extremely useful but might be a bit out of league as for assimilation. Not saying it's not important to understand it, but there is a safe margin between "getting it" and being able to recode the whole library... This will be the case here.
+Ah, easy pea, we already use a library! But this time ... it's not a Processing library. Oh my god! But then how can they communicate? Alien translator? Telepathy? Almost. While Processing is a language on its own, it's actually a over-set of another well known programming language: Java. Whatever you might know or will learn in Java,  you can reuse in Processing. This is doubly interesting: first, you have all the power of Java at your hands, all its structure, functions...; second, you can reuse any Java library, like the one we'll be using to feed on Twitter. Download it [here](http://twitter4j.org/archive/twitter4j-4.0.2.zip). In the *lib* folder, you will found the *twitter4j-core-4.0.2.jar* file. Extract it in safe place and then drag and drop the extracted file on your opened processing sketch. You should see at the bottom "one file added to the sketch".
 
-But before looking at the code, let's already download the library, which ... is not a Processing library. Oh my god! But then how can they communicate? Alien translator? Telepathy? Almost. While Processing is a language on its own, it's actually a over-set of another well known programming language: Java. Whatever you might know or will learn in Java,  you can reuse in Processing. This is doubly interesting: first, you have all the power of Java at your hands, all its structure, functions...; second, you can reuse any Java library, like the one we'll be using to feed on Twitter. Download it [here](http://twitter4j.org/archive/twitter4j-4.0.2.zip). In the *lib* folder, you will found the *twitter4j-core-4.0.2.jar* file. Extract it in safe place and then drag and drop the extracted file on your opened processing sketch. You should see at the bottom "one file added to the sketch".
+Now, library is installed. Unfortunately, to be able to use it Twitter requests you to have some identification. For that, you need to register a twitter account. Then visit https://app.twitter.com/ and login. Click on *Create an app*, fill out the form (you can put random info) and agree to the developer terms. You should arrive at a page with among others the *Consumer key* and the *Consumer secret*. Click on *Generate my access Token* and you should get the two last info we need: the *Access Token* and the *Access Token Secret*. Good, now before reading those tweets, let's learn how they are stored in the library.
 
-Alas, with this kind of usage, Twitter request you to have some identification. For that, you need to register a twitter account. Then visit https://app.twitter.com/ and login. Click on *Create an app*, fill out the form (you can put random info) and agree to the developer terms. You should arrive at a page with among others the *Consumer key* and the *Consumer secret*. Click on *Generate my access Token* and you should get the two last info we need: the *Access Token* and the *Access Token Secret*. Ahhh, now let's use it and see what is tweeted all around the world!
+##b) A new data structure
+While arrays are pretty nice, their size is hard defined at first, and can't change. It's both sad and not so much practical. Instead here we'll use an *ArrayList* which is working pretty much the same, but better. While we'll have to handle it, our future usage will be pretty simple, but let's first see a bit how it works.
 
-##b) Reading some tweets
+```java
+
+// Defining your variables
+// Between < > is the datastructure that we'll feed the ArrayList.
+ArrayList<Integer> myArrayList;
+int[] myArray;
+
+void setup() {
+  
+ // Instanciating your variables
+ myArray = new int[3]; 
+ myArrayList = new ArrayList<Integer>();
+ 
+ // Adding values
+ myArray[0] = 10;
+ myArray[1] = 20;
+ myArray[2] = 30;
+  
+ myArrayList.add(10); // Values are added on "top" of the previous ones
+ myArrayList.add(20);
+ myArrayList.add(30);
+ 
+ // Access to values
+ float midArray = myArray[1] / 2.0;
+ float midArrayList = myArrayList.get(1) / 2.0;
+ 
+ // size of the structure
+ int sizeArray = myArray.length;
+ int sizeArrayList = myArrayList.size();
+
+ exit(); 
+}
+
+void draw() {
+  
+}
+````
+Pretty similar to the arrays right? But much more powerful! Now that we are armed and dangerous, let's use our newly acquired skills to tackle this twitter library!
+
+##c) Reading some tweets
+
+Now .... sometimes you care, sometimes you don't. While at OTS we pride ourselves on explaining each line of code, sometimes while using more heavy libraries, some part of code might appear that are extremely useful but might be a bit out of league as for assimilation. Not saying it's not important to understand it, but there is a safe margin between "getting it" and being able to recode the whole library... This will be the case here.
+
+So, let's have an overfly of how connecting to twitter works.
+
+```java
+// Import twitter library
+import twitter4j.*;
+// Import for an inside java library (for using List)
+import java.util.*;
+ 
+// Here we'll be using List as an ArrayList.
+// Status is a data structure specific to the twitter library
+List<Status> statuses;
+// TwitterFactory allows us later to create twitter objects
+TwitterFactory twitterFactory;
+// What we will need later to connect to twitter
+Twitter twitter;
+ 
+void setup() {    
+  size(displayWidth, displayHeight); 
+  statuses = new ArrayList<Status>();
+  
+  // 1) Connecting to twitter (use your own ids)
+  // Don't over think the following lines. We create a new object
+  // and then set inner variables to our keys and tokens.
+  ConfigurationBuilder cb = new ConfigurationBuilder();
+  cb.setOAuthConsumerKey("...");
+  cb.setOAuthConsumerSecret("...");
+  cb.setOAuthAccessToken("...");
+  cb.setOAuthAccessTokenSecret("...");
+ 
+  // We know use this knewly created object to create a twitterFactory
+  twitterFactory = new TwitterFactory(cb.build());
+  // And we use this factory to finaly create our twitter object.
+  twitter = twitterFactory.getInstance();
+  
+} 
+```
+
+Soo ... when to care, and when not to? Well, if you're confident in a piece of code that is for now too specific for you to learn a lot, then you might want to use it, get a feel of it, but not dig deeper. Understanding is important, but exploring is too.
+
+Now that we connected, let's launch a query on twitter, this works in the same way as the *search* would on twitter.
+
+```java
+
+  // Previous code
+  // ...
+
+void setup() {
+
+  // Previous code
+  // ...
+
+  // 2) Launching a query
+  Query query = new Query( "\""+exp+"\"" );
+  QueryResult result;
+  
+  try {       
+    statuses = twitter.search(query).getTweets();
+  } catch(TwitterException e) {        
+    println("Search for tweets: " + e + " Status code: " + e.getStatusCode());
+  }    
+  
+  // 3) Outputing tweets
+  for (int i =0; i < statuses.size(); i++) {
+    println(statuses.get(i).getText());
+  }
+
+```
+
+##d) Displaying text 
+PFont
 
 ##c) Filtering your text
 simple display with red
 split, textWidth
-
-##d) A better display (or both at the same time?)
-PFont
 
 
 
