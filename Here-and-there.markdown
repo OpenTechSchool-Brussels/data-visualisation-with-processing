@@ -104,7 +104,7 @@ void draw() {
   background(0);  
   map.draw();
 
-  for (TableRow row : tableWifi.rows()) {
+  for (TableRow row : dataWifi.rows()) {
     float lat = row.getFloat("latitude");
     float lng = row.getFloat("longitude");
     // this is the magic function.
@@ -132,7 +132,7 @@ void draw() {
   background(0);  
   map.draw();
 
-  for (TableRow row : tableWifi.rows()) {
+  for (TableRow row : dataWifi.rows()) {
     float lat = row.getFloat("latitude");
     float lng = row.getFloat("longitude");
     ScreenPosition pos = map.getScreenPosition( new Location(lat, lng) );
