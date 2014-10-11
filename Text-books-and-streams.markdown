@@ -138,6 +138,8 @@ void setup() {
 
 Alas, we got them! Cheery merry tweets! Now that we have the data, you can display them in any form you prefere. Don't hesitate to explore graphical ways to display them, would that be using text or not. You could for instance compare the number of tweets with love and hate and visualize it. Or your could link the color of the screen with upcoming tweets: when "cold" appear you go toward blue, when "hot" appear you go toward red. Many visualization are possible, the one we'll create in the following part of this section has been a basis for numerous digital art installations.
 
+If you're not too much in a rush, you might want to create a `String` global variable that would be used for the query, it'll be much much easier to modify your program. And as a bonus, don't hesitate to put that code too in the `void keyPressed() { ... }` function so you can trigger it with your keyboard.
+
 ##d) Displaying text
 Let's start with displaying those string on the screen and not anymore just as log. For that, we'll use previously discovered function `text(String, posX, posY)` with a few added bonuses. Let's already display it on screen and build from there.
 
@@ -154,53 +156,90 @@ void draw() {
 
 Cute but ... text can be better looking. Let's try something simple already: center everything. For that you'll need to put `textAlign(CENTER);` in the `setup()` function. If you launch your code, you'll see that everything is centered but ... on the left borded! This is because you draw at *x=10* defined in the `text(String, posX, posY)` function. You need to change that value foe the middle of the screen. Remember how to do that? If not here is how: `width/2`.
 
-Better looking (is it?) but the font and size is ... not as best as could be. Let's change that.
-text()
-centered text
-PFont
+Better looking (is it?) but the font and size is ... not as best as could be. Let's change that. When coding about font, you have to take of a few things before using one. Lucky us, Processing has a built-in tool that simplify the process. Click in the menu on *Tools* -> *Create Font...*. A new interface will pop up, allowing you to chose both the font you want and its size. Once you're done, copy the text of your font (the fileName) and press OK. If you don't remember the name of your font, you can check its file by clicking in the menu on *Sketch* -> *Show Sketch Folder*. In our case, I picked *AGaramondPro-BoldItalic-38.vlw*. Now that it's created, we need to use it. As for all global variable, we'll need to declare it at the root of our code, instantiate in the setup and use it somewhere.
 
-##c) Filtering your text
-simple display with red
+```java
+// A new object: PFont. Used to store fonts. (P is for Processing)
+PFont font;
+ 
+void setup() {    
+  size(displayWidth, displayHeight);   
+  // Loading our font
+  font = loadFont("AGaramondPro-BoldItalic-38.vlw");
+  
+  //Stating that it's the one we'll use from now
+  textFont(font);
+
+}
+```
+
+Since the font is much bigger, you might want to change the layout a bit (or chose a smaller one than I did!).
+
+We're having now filtered information, a peak at the tweets, which is already a visualization. There is never objective way to look at things, by focusing on one specific side of it (filtering), we always tell a specific story.
+
+Speaking of a story, let's try to make one that speaks more to the mind.
+
+##c) Love & Hate
+
+The idea is simple. Let's outline what we filtered upon, center on the word, and make it in a specific color. For that we need to process a bit our strings. First we need to separate the string in three part. Before our word defining the query, our word, and then the rest. In order to center on our word, we also need to know the length of both our word. Let's do that!
+
+In order to separate the string, we'll use the `split(text, separator)`. This function breaks a String into pieces using a character or string as the delimiter, returning those pieces as an array of strings. For instance "I want to eat and to love and to breath" split with delimiter "and" will return the array {"I want to eat ", " to love ", " to breath"}. We'll use that to separate our strings in three. We'll use the word defining the query as a delimiter and voilà!
+
+ 
+void draw() {    
+  background(0);
+  
+
+  for (int i =0; i < listStatus.size(); i++) { // For all tweets
+   
+    // Separate the tweet
+    String[] list = split(listStatus.get(i).getText(), exp);
+    float offset=width/2 -textWidth(list[0]) -textWidth(exp)/2;
+    
+    // Before your expression
+    fill(255);
+    text(list[0], offset, 50+50*i);
+    offset += textWidth(list[0]); 
+    
+    // Your expression
+    fill(255,0,0);
+    text(exp, offset, 50+50*i);
+    offset += textWidth(exp); 
+    
+    // After your expression
+    fill(255);
+    for(int j=1; j<list.length; j++) {
+      text(list[j], offset, 50+50*i);
+      offset += textWidth(list[j]); 
+      
+    }
+  }
+  
+} 
+
+CENTER on the word
 split
 textWidth
 
+For instance, let's 
+simple display with red
 
 
- 
-Process: filter with start of sentences
-Plot: Organised text (potentialy dynamic)
+For next episode, we'll try to make it a stream.
 
-I am...
-I have ....
-
-... loves ...
-... hates ...
-
-... then ...
-
-Even better : stream (for next episode...)
+By the way, while it often results in a big mash-up pot of incoherency, you migth want to mix visualizations. You know how to handle text, tweet, getting data from the web and display it on a map. Does that spawn any crazy idea? If so, try them out!
 
 ## b) Books
- Getting books from project Guntenberg (and DNA). (Better downloading it than taking it form the web straight from application)
- Parsing lines.
- 
- Same than previously can be done.
- 
- Frequency of a word in a book
- Study the evolution of usage of a word over time (biggggg data base).
- 
- Tree: following of words (N tuplets...)
+Speaking about next episodes... There aren't enough hours in a night (and even less in a day), so the next two parts are ideas rather than real material. Don't hesitate to voice your ideas on those!
 
+Getting books from [project Guntenberg](http://www.gutenberg.org/)
+Parsing lines.
+Same than before can be tried.
+Frequency of a word in a book
+Study the evolution of usage of a word over time.
+Tree of words: Which words follow which (N tuplets...)
 
 ## c) DNA
+Getting Human Genome from [project Guntenberg](http://www.gutenberg.org/ebooks/author/856)
 
-Something about ADN ?
-
-
-
-        Data: Twitter feed
-            http://blog.blprnt.com/blog/blprnt/quick-tutorial-twitter-processing
-            http://blog.blprnt.com/blog/blprnt/updated-quick-tutorial-processing-twitter
-            http://codigogenerativo.com/twitter-para-processing-2-0/
-
-
+Absolutely no idea yet, but it'll be great! Maybe thanks to you if you have already an idea!
