@@ -22,6 +22,7 @@ Variables are good for atom of information but usually in Data Visualization, we
     float[] arrayOfFloats = new float[10]; // Defines an array of floats, of size 10.
     float rez = ArrayOfFloats[4]; // Access to the fifth value.
     ArrayOfFloats[5] = 4; // Modify one of its value.
+    float size = ArrayOfFloats.length; // Size of the array
 ```
 
 No, there was no mistake in the writing (not this time at least), the arrays index start at `0`, not `1`. So if you call `arrayOfFloats[1]`, you will not get the first element, but the second. This is why to call the fifth value, we code `arrayOfFloats[4]`.
