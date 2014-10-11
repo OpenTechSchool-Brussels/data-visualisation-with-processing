@@ -185,30 +185,35 @@ The idea is simple. Let's outline what we filtered upon, center on the word, and
 
 In order to separate the string, we'll use the `split(text, separator)`. This function breaks a String into pieces using a character or string as the delimiter, returning those pieces as an array of strings. For instance "I want to eat and to love and to breath" split with delimiter "and" will return the array {"I want to eat ", " to love ", " to breath"}. We'll use that to separate our strings in three. We'll use the word defining the query as a delimiter and voilà!
 
- 
+Being a bit in a rush, here is a working code, explained. Be sure to ask if you're not sure how it works.
+
+ ```java
 void draw() {    
   background(0);
   
+  // Your query as a variable. If not already done so, put your query instead of "love".
+  String exp = "love";
 
-  for (int i =0; i < listStatus.size(); i++) { // For all tweets
+for (int i =0; i < listStatus.size(); i++) { // For all tweets
    
     // Separate the tweet
-    String[] list = split(listStatus.get(i).getText(), exp);
+    String[] list = split(listStatus.get(i).getText(), exp); // if love was your query
+    // We're offsetting the text by the first string and half our query
     float offset=width/2 -textWidth(list[0]) -textWidth(exp)/2;
     
     // Before your expression
     fill(255);
     text(list[0], offset, 50+50*i);
-    offset += textWidth(list[0]); 
+    offset += textWidth(list[0]); // Adding as offset the width of the first text
     
     // Your expression
     fill(255,0,0);
     text(exp, offset, 50+50*i);
-    offset += textWidth(exp); 
+    offset += textWidth(exp); // Same with our query
     
     // After your expression
     fill(255);
-    for(int j=1; j<list.length; j++) {
+    for(int j=1; j<list.length; j++) { // Display all the remaining strings.
       text(list[j], offset, 50+50*i);
       offset += textWidth(list[j]); 
       
@@ -216,14 +221,6 @@ void draw() {
   }
   
 } 
-
-CENTER on the word
-split
-textWidth
-
-For instance, let's 
-simple display with red
-
 
 For next episode, we'll try to make it a stream.
 
