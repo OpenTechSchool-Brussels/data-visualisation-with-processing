@@ -97,7 +97,7 @@ And last, let's show it in the `draw()` function:
 And what about drawing our data you're asking me? Almost as easy! While this library is nice for zooming and navigating, what it's really great for is the fact that it talks nicely between screen position and longitude/latitude. All in all, here how it goes:
 
 ```java
-void mapViz() {
+void draw() {
   noStroke();
   fill(30, 30, 255, 100);
   
@@ -125,7 +125,7 @@ So much to learn here! First, you can access both coordinates of the mouse throu
 
 ```java
 
-void mapViz() {
+void draw() {
   noStroke();
   fill(30, 30, 255, 200);
   
