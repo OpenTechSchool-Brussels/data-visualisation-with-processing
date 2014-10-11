@@ -25,7 +25,7 @@ I have ....
 Even better : stream (for next episode...)
 
 ## b) Books
- Getting books from project Guntenberg (and DNA).
+ Getting books from project Guntenberg (and DNA). (Better downloading it than taking it form the web straight from application)
  Parsing lines.
  
  Same than previously can be done.
