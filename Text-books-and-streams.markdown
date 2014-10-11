@@ -71,7 +71,7 @@ import java.util.*;
  
 // Here we'll be using List as an ArrayList.
 // Status is a data structure specific to the twitter library
-List<Status> statuses;
+List<Status> listStatus;
 // TwitterFactory allows us later to create twitter objects
 TwitterFactory twitterFactory;
 // What we will need later to connect to twitter
@@ -79,7 +79,7 @@ Twitter twitter;
  
 void setup() {    
   size(displayWidth, displayHeight); 
-  statuses = new ArrayList<Status>();
+  listStatus= new ArrayList<Status>();
   
   // 1) Connecting to twitter (use your own ids)
   // Don't over think the following lines. We create a new object
@@ -113,28 +113,56 @@ void setup() {
   // ...
 
   // 2) Launching a query
-  Query query = new Query( "\""+exp+"\"" );
+  // A query is an object that will provide us tweets.
+  // You create it by providing the string you will be searching for
+  Query query = new Query( "OpenTechSchool );
   QueryResult result;
   
-  try {       
-    statuses = twitter.search(query).getTweets();
+ // Wouhou.... try catch... Don't dwell to much on that, let's just say
+ // that whatever is in the try{ .. } will be checked for the "TwitterException" error.
+ // If there is one then what is in catch() { ... } will be executed.
+  try {
+    // Launch the query and get the resulting tweets.
+    listStatus= twitter.search(query).getTweets();
   } catch(TwitterException e) {        
-    println("Search for tweets: " + e + " Status code: " + e.getStatusCode());
+    println("Error");
   }    
   
   // 3) Outputing tweets
   for (int i =0; i < statuses.size(); i++) {
+    // .getText() is an inner function of Status and return the text of the tweet.
     println(statuses.get(i).getText());
   }
 
 ```
 
-##d) Displaying text 
+Alas, we got them! Cheery merry tweets! Now that we have the data, you can display them in any form you prefere. Don't hesitate to explore graphical ways to display them, would that be using text or not. You could for instance compare the number of tweets with love and hate and visualize it. Or your could link the color of the screen with upcoming tweets: when "cold" appear you go toward blue, when "hot" appear you go toward red. Many visualization are possible, the one we'll create in the following part of this section has been a basis for numerous digital art installations.
+
+##d) Displaying text
+Let's start with displaying those string on the screen and not anymore just as log. For that, we'll use previously discovered function `text(String, posX, posY)` with a few added bonuses. Let's already display it on screen and build from there.
+
+```java
+void draw() {
+  background(0);
+  for (int i =0; i < listStatus.size(); i++) {
+    // We use 50 + 50*i for the y value to have each line on there own axis
+    text(listStatus.get(i).getText(), 10, 50*i);
+  }
+
+}
+```
+
+Cute but ... text can be better looking. Let's try something simple already: center everything. For that you'll need to put `textAlign(CENTER);` in the `setup()` function. If you launch your code, you'll see that everything is centered but ... on the left borded! This is because you draw at *x=10* defined in the `text(String, posX, posY)` function. You need to change that value foe the middle of the screen. Remember how to do that? If not here is how: `width/2`.
+
+Better looking (is it?) but the font and size is ... not as best as could be. Let's change that.
+text()
+centered text
 PFont
 
 ##c) Filtering your text
 simple display with red
-split, textWidth
+split
+textWidth
 
 
 
