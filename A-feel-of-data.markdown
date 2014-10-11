@@ -19,7 +19,7 @@ Not getting into too much details, but variables have scopes. Where you define t
 Variables are good for atom of information but usually in Data Visualization, we have a loooot of data or in more precise terms : a set of data. We need a way to store this set. We could define a load of variables, but it'd be very tiring and hard to handle. Instead, for this usage we have arrays. Arrays allow you to store a finite number of variables and access them one by one using an index.
 
 ```java
-    float[] arrayOfFloats = new float[10]; // Defines an array of floats, of size 10.
+    float[] ArrayOfFloats = new float[10]; // Defines an array of floats, of size 10.
     float rez = ArrayOfFloats[4]; // Access to the fifth value.
     ArrayOfFloats[5] = 4; // Modify one of its value.
     int size = ArrayOfFloats.length; // Size of the array
