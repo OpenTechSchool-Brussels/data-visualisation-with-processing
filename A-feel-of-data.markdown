@@ -70,12 +70,14 @@ float[] dataUniform;
 float[] dataGaussian;
 float[] dataPerlin;
 
+int k;
+
 void setup() {
   size(600,500);
   fill(255);
   noStroke();
   
-  int k = 1000;
+  k = 1000;
 
   // Creating our data sets
   dataUniform = new float[k];
