@@ -50,7 +50,7 @@ void setup() {
     float lng = row.getFloat("longitude");
     
     println("Sweet sweet wifi at " + name +
-            " of adress: " + nbr + ", " + street +
+            " of address: " + nbr + ", " + street +
             ". [" + lng +", "+lat+"]." );
   }  
 }
