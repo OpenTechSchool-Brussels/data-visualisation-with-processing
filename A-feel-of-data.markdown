@@ -150,13 +150,13 @@ void keyPressed() {
 
 ```
 
-Let's use this time color to get a feel of the data.
+Let's use this time colour to get a feel of the data. This time, we won't display dynamically all data, we will display them statically at once. For that let's display them over many lines, as a array. We will vary two counters, defining both axis offset and the value to display:
 
 ```java
 void draw() {
   background(0);
-  for(int j=0; j<20; j++) {
-  for(int i=0; i<100; i++) {  
+  for(int j=0; j<20; j++) { // characterising yOffset in "ellipse" 
+  for(int i=0; i<100; i++) { // characterising xOffset in "ellipse"
     // 1) Uniform randomness
     fill(dataUniform[j*100+i]/100 * 255);
     ellipse( 50 +i*5, 50 +j*5, 5, 5);
@@ -226,6 +226,7 @@ void setup() {
   // Calculate frequency
   for (int i=0; i<k; i++) {
       freqUniform[int(dataUniform[i])] ++;
+      // No Gaussian yet...
       // freqGaussian[int(dataGaussian[i])] ++;
       freqPerlin[int(dataPerlin[i])] ++;
   }
@@ -244,6 +245,7 @@ void draw() {
       rect( 100+i*4, 150 - freqUniform[i]/2, 3, freqUniform[i]/2);
       
       // 2) Gaussian randomness
+      // No Gaussian yet...
 //      rect( 100+i*4, 300 - freqGaussian[i]/2, 3, freqGaussian[i]/2);
 
       // 3) Perlin noise
