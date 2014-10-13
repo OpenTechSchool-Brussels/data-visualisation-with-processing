@@ -248,6 +248,7 @@ void draw() {
   fill(0, 0, 0, 5); // Bahhh, Processing keep an ugly grey when alpha is too low :(
   rect(0,0,width, height);
   
+  // Many ways to write "i = i + 1". Among others, "i += 1" or even shorter : i++
   for(int i=0; i<5; i++) {
    fill(random(255), random(255), random(255), random(255));
    rect(mouseX + random(-20,20), mouseY + random(-20,20), random(2,5), random(2,5));
