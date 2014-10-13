@@ -104,10 +104,10 @@ void draw() {
 It's always nice to have a strong feeling of what data is, nothing better than creating your own data set from scratch! This part will be the basis of what we'll do now. Unless said otherwise, I'll only add code to the `draw` function now. On a side note, we have only one data set by random process. You're invited to review our previous code and create a few per random process to understand the variations inside a same process (and for much coolness, because rendering many of them looks kinda cool).
 
 
-##c) Shapes & Colors
+##c) Shapes & Colours
 
 Display shapes & size (rectangle) : random data
-Let's display series of that data. We'll display rectangles in series, of which height depends on the value of the data set. If you remember well, we draw rectangles from the upper left corner. If we want to align them not on that corner, but on a lower one, then we need to make a little math operation. Curious about which one? Lucky you below is a code with the answer:
+Let's display series of that data. We'll display rectangles in series, of which height depends on the value of the data set. If you remember well, we draw rectangles from the upper left corner. If we want to align them not on that corner, but on a lower one, then we need to make a little maths operation. Curious about which one? Lucky you below is a code with the answer:
 
 ```java
 
@@ -134,7 +134,7 @@ As a little bonus, here is a way to generate new data on the fly:
 
 void keyPressed() {
     
-  // We need an offset to have different perlin noise values
+  // We need an offset to have different Perlin noise values
   float offset = random(0,10000);
     
   for(int i=0; i<k; i++) {  
@@ -175,7 +175,7 @@ void draw() {
 }
 ```
 
-Choosing the right color is often a pretty complex process, and would require a whole workshop for it. Try to play with other shades, cold to warm (avoid the rainbow), gray to saturate... You might want to go check out this great resource from Nasa : [link](http://www.earthobservatory.nasa.gov/blogs/elegantfigures/2013/08/05/subtleties-of-color-part-1-of-6)
+Choosing the right colour is often a pretty complex process, and would require a whole workshop for it. Try to play with other shades, cold to warm (avoid the rainbow), gray to saturate... You might want to go check out this great resource from Nasa : [link](http://www.earthobservatory.nasa.gov/blogs/elegantfigures/2013/08/05/subtleties-of-color-part-1-of-6)
 
 Second, up until now we used one dimension data sets. It's not the case for all data set. The dimension of a data set is defined by the number of variable in input, in our case there is only the index, so only one dimension. 
 
