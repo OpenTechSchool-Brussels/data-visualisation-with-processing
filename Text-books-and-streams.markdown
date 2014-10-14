@@ -115,7 +115,7 @@ void setup() {
   // 2) Launching a query
   // A query is an object that will provide us tweets.
   // You create it by providing the string you will be searching for
-  Query query = new Query( "OpenTechSchool );
+  Query query = new Query( "OpenTechSchool" );
   QueryResult result;
   
  // Wouhou.... try catch... Don't dwell to much on that, let's just say
