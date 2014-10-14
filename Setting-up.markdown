@@ -44,37 +44,35 @@ What you called is a function, and you fed it with parameters, four to be precis
 
 
 ##d) Data Visualization
-TO BE DONE
 
-Its aim & its craft
+Data visualisation is a field where data is not just states but visualy shared, using a medium that is more human. This way, humans can make more of the data set, get more of the information and single out the salient point more easily.
 
-GEOMETRY
+Before anything else, Data Visualisation is Design, and hence is about sharing something, an information. It's not about data decoration but about a story, a focus on what the reader will get. Data Visualisation is just one tool (among many) to share information. Use it accordingly, with a focus on the message.
 
-YOUR SENSIBILITY: most important
+You can single out two kind of content/story, either you have a message you want to share through the data and how you display it, or you want to allow the user to explore your visualisation for him/her to make his/her own story. You're never completly on one or the other side, but both extreme are good to keep in mind while giving a direction to your work.
 
-The story / Usefulness
+All in all, Data Visualisation is a powerfull tool for reasoning and communicating about data in a more human friendly way.
 
-The process (get, crunch, organize...)
+Last, be aware of the limitation of the tool. When sharing a message through Data visualisation, you're dependent on the data, its quality and potential bias. Beside, how you use the data might heavily mislead the reading of it. Always be clear and concise, but keep in mind that the mere fact that you have a story in mind might end up as manipulation.
 
-Gestalt (or the other German word Pänz-something)
-
-Colors
 
 ##e) Data (input)
-TO BE DONE
+Data is what you will feed your system, what you will use to display.
+
 DataSet / DataBase
-
 Kind of data (stream, text, graphs network/trees, tables, CSV, JSON, XML)
+Variety of data, and of data type, and of info you can get from it. 
+as an inspiration
+Get data, filter data, process data, organise it, visualise it
 
-OpenData
 
-Variety of data, and of data type, and of info you can get from it.
-http://drum.lib.umd.edu/bitstream/1903/5784/1/TR_96-66.pdf
 
 ##f) Medium (output)
 Static Vs Dynamic Vs Interactive
-
 Print, website, tablet/smartphone, computer screen, projections...
+To each medium its specificity
+
+SENSIBILITY TO ADD IN INDEX
 
 On a side note, it is important to see code as what it is: a medium that allow for multiple kind of creation, art & design among others. Having a good grasp of what code is allow you to better understand its possibilities and precise your sensibility. Code is a language, a medium, with which you can do many things. You can draw, write poems or sign contracts with a pen. Same with code. And it’s by its practice, its knowledge and the culture you will create that will emerge interesting digital art, design, prototypes... Many thing can be said of the nature of code, and while that would be very interesting to develop, that is out of the scope of this workshop. While that is true, I hope this workshop will make you see how poetic code can be, even if it’s sometimes frustrating: as any deep and complex language is when you are learning it.
 
