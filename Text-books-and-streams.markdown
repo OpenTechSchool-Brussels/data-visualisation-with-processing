@@ -1,7 +1,7 @@
 ---
 layout: default
 title:  "Text, books & streams"
-num: 4
+num: 3
 
 ---
 
