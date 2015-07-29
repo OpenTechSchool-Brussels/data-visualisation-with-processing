@@ -1,7 +1,7 @@
 ---
 layout: default
 title:  "Here & There"
-num: 3
+num: 2
 
 ---
 
