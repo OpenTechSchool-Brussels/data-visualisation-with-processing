@@ -1,7 +1,7 @@
 ---
 layout: default
 title:  "A feel of Data"
-num: 2
+num: 1
 
 ---
 
