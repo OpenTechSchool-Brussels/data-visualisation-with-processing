@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="{{ site.baseurl }}/css/monokai_sublime.css">
         <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon" />
 
+	<script src="{{ site.baseurl }}/js/perso.js"></script>
         <script src="{{ site.baseurl }}/js/highlight.pack.js"></script>
         <script> hljs.configure({tabReplace: '    '}); hljs.initHighlightingOnLoad();</script>
     </head>
@@ -28,7 +29,7 @@
             <hr />
 
 	<!-- Left menu-->
-        <div class="aside">
+        <div class="aside" id="p_menu">
             <a href="{{ site.baseurl }}/">Home</a>
             <ul>
                 {% for i in (0..site.pages.size) %} {% for post in site.pages %} {% if post.num == i %}
@@ -44,7 +45,7 @@
         </div>
 
 	<!-- Contect of the page (from Markdown files) -->
-        <div class="main">
+        <div class="main" id="p_content">
             {{ content }}
         </div>
 
