@@ -65,6 +65,8 @@ We will now use this method to study not data set, but data set generator, and m
 
 Let's first generate our data set and have a quick look at them, we will then try to understand them from what is displayed.
 
+// SEPARATE EACH formula's code, and exlain it bits by bits.
+
 ```java
 void setup() {
   size(displayWidth, displayHeight);
