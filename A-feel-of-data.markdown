@@ -5,24 +5,42 @@ num: 1
 
 ---
 
-This is the most important section, and might end up being the whole of the workshop. Here, the aim is not to study or learn classical instances of data visualizations (charts, graphs...) and neither to focus on specific tools that allow you to do a discrete finite set of things. Here, the aim is to get at the core of data visualization, having a feel of the data. What representing it means, and how we can give a more human meaning to those numbers, to enlighten a perspective, to open them for exploration.
+While pretty rough, this section is the most important, and might end up being the whole of the workshop. Here, the aim is not to study or learn classical instances of data visualizations (charts, graphs...) and neither to focus on specific tools that allow you to do a discrete finite set of things. Here, the aim is to get at the core of data visualization: trying to get a feel of what data can be (numerical data in this case), what representing it means, and how we can give a more human aspect to those numbers. All that to enlighten a perspective, to open the data for exploration.
 
-In the following, we will see many simple examples, fitting both learning how to code and getting a feel of what data and its visualization can mean. 
+In the following, we will see many simple examples. Some good for getting back in gear about coding in processing, some for getting a feel of what data and its visualization can mean. 
 
-##a) Basic structures of data
-Before using data and visualizing it, we need to have some. In programming languages, we have many ways to store information, let's review the basic ones. See this part as getting your first feel of how data is stored, a basic inspiration on how to later use it.
+##a) Basic data structures
+In order to play with data, you first need to have an inner representation f it. Classic programming languages allows many ways to store information. At first one might think that all ways are more or less the same, just sometimes making for a quicker and easier handling. While all can actually be done with simple variable, our aim here to make sense of data. How you organize your data is already a way to make sense of it, and hence will help your inner representation. Not only a representation, it can also quickly become an inspiration in the way you visualize it since it's actually how the computer is storing it.
 
-The atomic information holder is called a variable. A variable is defined by three things. Its name, what kind of information it stores, and its value. You can store text, integers, float, colors, vectors ... many many things. A complete definition of a variable is as follow: `float myVariable = 20.45;`. We have in order the variable’s type (`float`), its name (`myVariable`), and the value it’ll be affected (`20.45`). The symbol `=` here doesn’t defines an equality but an affectation. It reads as “let’s calculate what is on the right side of the symbol, and affect the variable on the left with that value”. While there are many possible types, we'll be using manly three : `floats` for decimal values (like 19.53, 0.1, -45.1), `int` for integers (0, 10, -23) and `string` for text ("h", "hello", text is always between quote marks). 
+More over, variables are good for atom of information but usually in Data Visualization, we have a loooot of data or in more precise terms : a set of data. We need an accurate way to store, access and process them. While we could define a load of variables, (complex to name and hard to handle) we can use a basic data structure: the arrays. Arrays allow you to store a finite number of variables and access them one by one using an index.
 
-Not getting into too much details, but variables have scopes. Where you define them define where you can use them. If you want to use them locally, define them at a specific place in your program, if you want to use them everywhere, then define them at the root, at the start of your program.
-
-Variables are good for atom of information but usually in Data Visualization, we have a loooot of data or in more precise terms : a set of data. We need a way to store this set. We could define a load of variables, but it'd be very tiring and hard to handle. Instead, for this usage we have arrays. Arrays allow you to store a finite number of variables and access them one by one using an index.
+If you're not already used to arrays (or just unsure on how they are used in Processing), the following code might help you refresh your memory.
 
 ```java
-    float[] ArrayOfFloats = new float[10]; // Defines an array of floats, of size 10.
-    float rez = ArrayOfFloats[4]; // Access to the fifth value.
-    ArrayOfFloats[5] = 4; // Modify one of its value.
-    int size = ArrayOfFloats.length; // Size of the array
+// Defined at the root of the code for global purpose
+float[] grades;
+
+void setup() {
+  size(displayWidth, displayHeight);
+  background(20);
+  strokeWeight(5);
+  stroke(200);
+
+  // Could be instantiated before, but feels better in setup
+  grades = new float[30];
+  
+  // Let's give fill with random grades
+  for( int i = 0; i < grades.length; i++)
+    grades[i] = int( random(20) );
+}
+
+void draw() {
+
+  // Let's have basic flow chart of how our random students did
+  for( int i = 0; i < grades.length; i++)
+    line(50, 50 + i*50, 50 + grades[i] * 200, 50 + i*50);
+
+}
 ```
 
 No, there was no mistake in the writing (not this time at least), the arrays index start at `0`, not `1`. So if you call `arrayOfFloats[1]`, you will not get the first element, but the second. This is why to call the fifth value, we code `arrayOfFloats[4]`.
