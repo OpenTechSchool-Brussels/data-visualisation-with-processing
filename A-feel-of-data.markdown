@@ -104,16 +104,17 @@ void draw() {
 
 Hmm, a lot to look at, both in how they are created (not our main job here) and on what to understand of their behavior from what is displayed. But first of all, take a step back and don't underestimate your achievement: you have here the whole shebang here, getting data, using it, visualizing it. And not a so bad visualization since you can already decipher patterns in them. From this simple (but already dynamic!) visualization, you can already get a feeling of what all those random process are doing. First one is chaotic, the next one bears less bounds, but is more centered on a value, the following one is more of an evolution over time and the last one can have pretty unexpected bursts!
 
+// EXPLANATION ABOUT THE CODE AND FORMULA
+
 //Boundaries => some time you're out of visualisation, hard to find the good scale (other exist than linear SOURCE, for another time, enough of maths alredy).
 
 In the rest of this section, we'll use arrays of such random values, called dataUniform, dataGaussian, dataPerlin and dataPareto. Don't forget to create them and fill them with value in the setup function!
 
-It's always nice to have a strong feeling of what data is, nothing better than creating your own data set from scratch! This part will be the basis of what we'll do now. Unless said otherwise, I'll only add code to the `draw` function now. On a side note, we have only one data set by random process. You're invited to review our previous code and create a few per random process to understand the variations inside a same process (and for much coolness, because rendering many of them looks kinda cool).
+On a side note, we have only one data set by random process. You're invited to modify our previous code and make it possible to create multiple data set per random process to study the variations inside a same process (and for much coolness, because rendering many of them looks kinda neat).
 
-// 1D and 2D
+##c) 1D, 2D and the rest...
 
-
-##c) Shapes & Colours
+##d) Shapes & Colours
 
 Display shapes & size (rectangle) : random data
 Let's display series of that data. We'll display rectangles in series, of which height depends on the value of the data set. If you remember well, we draw rectangles from the upper left corner. If we want to align them not on that corner, but on a lower one, then we need to make a little maths operation. Curious about which one? Lucky you below is a code with the answer:
