@@ -22,9 +22,7 @@ float[] grades;
 
 void setup() {
   size(displayWidth, displayHeight);
-  background(20);
   strokeWeight(5);
-  stroke(200);
 
   // Could be instantiated before, but feels better in setup
   grades = new float[30];
@@ -35,91 +33,84 @@ void setup() {
 }
 
 void draw() {
-
-  // Let's have basic flow chart of how our random students did
+  background(20);
+  
+  // Let's have basic flow chart of how our random students did  
+  stroke(200);
   for( int i = 0; i < grades.length; i++)
-    line(50, 50 + i*50, 50 + grades[i] * 200, 50 + i*50);
+    line(50, 50 + i*20, 50 + grades[i] * 50, 50 + i*20);
+    
+  // Let's check how many passed the year == got over 12
+  stroke(200, 0, 0);
+  line(50 + 12 * 50, 25,
+       50 + 12 * 50, 25 + grades.length*20 + 25);
+}
 
+void keyPressed() {
+  // Let's reroll the dices
+  for( int i = 0; i < grades.length; i++)
+    grades[i] = int( random(20) );
 }
 ```
 
-No, there was no mistake in the writing (not this time at least), the arrays index start at `0`, not `1`. So if you call `arrayOfFloats[1]`, you will not get the first element, but the second. This is why to call the fifth value, we code `arrayOfFloats[4]`.
+Without much, we already have a lot to talk and experiment about here. First the usage of the array (creating the array, access of its data -reading & writing-, getting its length, parsing it), then how to create our own little data set (randomness to the rescue), and last we created the mother of all visualization: a bar chart.
+
+Last and most important, we wanted to see how many student passed (grade over twelve). Series of number would have made that hard to read. So would have been a classic bar chart. Adding a line already help with the visualization. Try already to imagine on this simple example how to better the visualization, and what message you could share. You will see that it's through practice of very simple examples that you will understand key principles (because there is nothing else to cloud the mind).
 
 #b) Show me the numbers!
 
-Great, we have ways to store data. Now, let's use that to create our first data set, and visualize it. Processing has a few ways to generate random process, let's generate a few data set and use this occasion to study and visualize them.
+Great, we have a fitting way to store data. Now, let's see what kind of data set we can generate. Most of the data set you might get will be from nature, and as such will bear meaning in that they are a description of events. They might appear random from afar, but an understanding of the underlying mechanism will explain you what's happening. Alas, these underlying mechanism are usually hidden to the eye, it's through the study and representation of data that we can actually get a hold on them.
 
-Let's have a look at the three process we'll be studying and already a first visualization.
+We will now use this method to study not data set, but data set generator, and more precisely randomness function. Randomness is a topic that could have its own workshop (any takers?!), but right now we'll focus on 4 kind of noises: White noise, Gaussian noise, Perlin noise and Pareto noise. While other [colors of noise](https://en.wikipedia.org/wiki/Colors_of_noise) are out of scope of this workshop, a bit of culture never hurt anyone.
+
+Let's first generate our data set and have a quick look at them, we will then try to understand them from what is displayed.
 
 ```java
 void setup() {
-  size(600,500);
+  size(displayWidth, displayHeight);
   fill(255);
   noStroke();
-  
 }
 
 void draw() {
   background(0);
   float k;
   
-  // 1) Uniform randomness
-  k = random(0,100);
+  // 1) Uniform randomness, white noise
+  int limit = 100;
+  k = random(0,limit);
   ellipse(100,250,k,k);
  
-  // 2) Gaussian randomness (mean=0, deviation=1)
-  k = randomGaussian() * 30 + 50;
+  // 2) Gaussian randomness
+  int mean = 70;
+  int deviation = 30;
+  k = deviation * randomGaussian() + mean;
   ellipse(300,250,k,k);
  
   // 3) Perlin noise
-  // frameCount contains the number of frames
-  // that have been displayed since the program started
-  k = noise(frameCount/100.0)*100;
-  ellipse(500,250,k,k);  
-}
+  float x = frameCount/100.0;
+  k = 100 * noise(x);
+  ellipse(500,250,k,k);
 
-```
-Here we go, a basic visualization for the mother of data : noise. Take a step back, and don't underestimate your achievement, you have here the whole shebang. Getting data, using it, visualizing it. And not a so bad visualization since you can already decipher patterns in them. From this simple (but already dynamic!) visualization, you can already get a feeling of what all those random process are doing, but let's push it forward.
+  // 4) Pareto noise
+  int ym = 1;
+  int a = 3;
+  float y = ym + random(10);
+  k = 100 * ( a * pow(ym, a) / pow(y, a+1) );
+  ellipse(700,250,k,k);
 
-But wait what about the arrays? True, true, let's use and create those data set before anything else.
-
-```java
-float[] dataUniform;
-float[] dataGaussian;
-float[] dataPerlin;
-
-int k;
-
-void setup() {
-  size(600,500);
-  fill(255);
-  noStroke();
-  
-  k = 100000;
-
-  // Creating our data sets
-  dataUniform = new float[k];
-  dataGaussian = new float[k];
-  dataPerlin = new float[k];
-
-  for(int i=0; i<k; i++) {  
-    // 1) Uniform randomness
-    dataUniform[i] = random(0,100);
-    // 2) Gaussian randomness
-    dataGaussian[i] = randomGaussian() * 30 + 50;   
-    // 3) Perlin noise
-    dataPerlin[i] = noise(frameCount/100.0)*100;
-  }
-  
-}
-
-void draw() {
-  background(0);
-  // Nothing :(
 }
 ```
+
+Hmm, a lot to look at, both in how they are created (not our main job here) and on what to understand of their behavior from what is displayed. But first of all, take a step back and don't underestimate your achievement: you have here the whole shebang here, getting data, using it, visualizing it. And not a so bad visualization since you can already decipher patterns in them. From this simple (but already dynamic!) visualization, you can already get a feeling of what all those random process are doing. First one is chaotic, the next one bears less bounds, but is more centered on a value, the following one is more of an evolution over time and the last one can have pretty unexpected bursts!
+
+//Boundaries => some time you're out of visualisation, hard to find the good scale (other exist than linear SOURCE, for another time, enough of maths alredy).
+
+In the rest of this section, we'll use arrays of such random values, called dataUniform, dataGaussian, dataPerlin and dataPareto. Don't forget to create them and fill them with value in the setup function!
 
 It's always nice to have a strong feeling of what data is, nothing better than creating your own data set from scratch! This part will be the basis of what we'll do now. Unless said otherwise, I'll only add code to the `draw` function now. On a side note, we have only one data set by random process. You're invited to review our previous code and create a few per random process to understand the variations inside a same process (and for much coolness, because rendering many of them looks kinda cool).
+
+// 1D and 2D
 
 
 ##c) Shapes & Colours
