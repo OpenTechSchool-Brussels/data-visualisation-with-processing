@@ -57,7 +57,7 @@ Without much, we already have a lot to talk and experiment about here. First the
 
 Last and most important, we wanted to see how many student passed (grade over twelve). Series of number would have made that hard to read. So would have been a classic bar chart. Adding a line already help with the visualization. Try already to imagine on this simple example how to better the visualization, and what message you could share. You will see that it's through practice of very simple examples that you will understand key principles (because there is nothing else to cloud the mind).
 
-#b) Show me the numbers!
+##b) Show me the numbers!
 
 Great, we have a fitting way to store data. Now, let's see what kind of data set we can generate. Most of the data set you might get will be from nature, and as such will bear meaning in that they are a description of events. They might appear random from afar, but an understanding of the underlying mechanism will explain you what's happening. Alas, these underlying mechanism are usually hidden to the eye, it's through the study and representation of data that we can actually get a hold on them.
 
@@ -65,7 +65,8 @@ We will now use this method to study not data set, but data set generator, and m
 
 All the following code is meant to be tested in the draw function, which will repeat it very quickly over time, hence giving the impression of showing multiple value of a data set and a graphical appreciation of it.
 
-First of all, uniform randomness, otherwise called *white noise*. You can try to generate different kind of noises by feeding uniform noise in complex functions (logarithm, cosines, square root, mash up those ...).
+### Uniform randomness
+Otherwise called *white noise*. You can try to generate different kind of noises by feeding uniform noise in complex functions (logarithm, cosines, square root, mash up those ...).
 
 ```java
   int limit = 100; // Defines the span of random values
@@ -85,11 +86,15 @@ Second, let's see about Gaussian randomness. If you've heard of the normal distr
 ```
 Similar behavior than previously, but we see already that the randomness appear as centered.
 
+Third, Perlin noise, a very famous noise in computer graphic (among others, for procedural texture).
 
-  // 3) Perlin noise
+```java
   float x = frameCount/100.0;
   k = 100 * noise(x);
   ellipse(500,250,k,k);
+```
+
+Here we see a random process, but more alike of an evolution.
 
   // 4) Pareto noise
   int ym = 1;
