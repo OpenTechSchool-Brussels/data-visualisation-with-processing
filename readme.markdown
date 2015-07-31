@@ -10,3 +10,4 @@ Thank github pages :D
 
 Todo:
 - One more log: Graphs & Networks (Wikipedia nodes?)
+- One more log (or part): RSS feeds. Inspiration: http://btk.tillnagel.com/tutorials/rss-feeds-processing.html
