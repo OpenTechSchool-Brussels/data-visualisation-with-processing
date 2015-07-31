@@ -88,7 +88,7 @@ If you've heard of the normal distribution, that's the same thing. If you haven'
 Similar behavior than previously, but we see already that the randomness appear as centered.
 
 ##### iii) Perlin noise
-A very famous noise in computer graphic (among others, for procedural texture). In order to use that evolution, we need values that follow each other. For that, we'll use as a counter the frame count which can be refered to as .... frameCount. Who would have guessed? You might want to explore feeding it with counters of different steps, or even sightly random counters.
+A very famous noise in computer graphic (among others, for procedural texture). In order to use that evolution, we need values that follow each other. For that, we'll use as a counter the frame count which can be referred to as .... frameCount. Who would have guessed? You might want to explore feeding it with counters of different steps, or even sightly random counters.
 
 ```java
   float x = frameCount/100.0;
@@ -111,51 +111,43 @@ Ok, this one is a bit hardcore, a distribution from the power law family of dist
 
 Ok, that's a lot to process. Thankfully it is not your task but that of the machine. Work machine! An interesting result. Pretty small in average, but with sudden burst at occasions, usually in the same spans of length.
 
-As said, it's hard sometimes to lock on the fitting range of output. The notion of boundaries is particularly important in data visualisation. Sometimes your data set reach far, but it's a specific part you want to show. If you get the far values of, you might be lying about the size relations of your inner dataset. If you include the far values, it means you're on a bigger scale, which might make the rest of your data set super dense and not very legible. While sometimes you can change for instance your scale (from linear to logarithmic for instance), there are no definite answer. Don't try to lie about or hide data, don't force a message, just try to use it for what it is.
+As said, it's hard sometimes to lock on the fitting range of output. The notion of boundaries is particularly important in data visualization. Sometimes your data set reach far, but it's a specific part you want to show. If you get the far values of, you might be lying about the size relations of your inner data set. If you include the far values, it means you're on a bigger scale, which might make the rest of your data set super dense and not very legible. While sometimes you can change for instance your scale (from linear to logarithmic for instance), there are no definite answer. Don't try to lie about or hide data, don't force a message, just try to use it for what it is.
 
 ##### v) Data set
 Well, firstly, time to take a step back and to not underestimate your achievement: you have here the whole shebang here, getting data, using it, visualizing it. And that over multiple sources of information. Moreover, a not so bad visualization since we already managed to decipher a few patterns and understand the underlying information. From this simple (but already dynamic!) visualization, you can already get a feeling of what all those random process are doing.
 
-In the rest of this section we won't use isolated values but set of those. Inspire yourself of the first part of this section where we fed an array to create similar data set for each random processes. We will refer later on to them as *dataUniform*, *dataGaussian*, *dataPerlin* and *dataPareto*. If you're a bit lost, just use the following pattern:
+In the rest of this section we won't use isolated values but set of those. Inspire yourself of the first part of this section where we fed an array to create similar data set for each random processes. We will refer later on to them as *dataUniform*, *dataGaussian*, *dataPerlin* and *dataPareto*. We will define there size as *k*. If you're a bit lost, just use the following pattern:
 
 ```java
 // At the root
+int k;
 float[] dataSetTest;
 ```
 
 ```java
 // In setup
-  dataSetTest = new float[30];
-  for( int i = 0; i < dataSetTest.length; i++)
+  dataSetTest = new float[k];
+  for( int i = 0; i < k; i++)
     dataSetTest[i] = 0; // replace with the corresponding formula
 ```
 
-On a side note, we have only one data set by random process. You're invited to modify our previous code and make it possible to create multiple data set per random process to study the variations inside a same process and also to be able to use many of them at once, like for instance in the following section!
+You might want to code a way to generate new data by the press of a button as we did at the start of the workshop. Very (read very very) useful.
 
-##c) 1D, 2D and the rest...
+On a side note, we have only one data set by random process. You're invited to modify our previous code and make it possible to create multiple data set per random process to study the variations inside a same process and also to be able to use many of them at once, like we will see in a later paragraph.
 
-##d) Shapes & Colours
+##c) Back to Shapes, and some Colors
 
-Display shapes & size (rectangle) : random data
-Let's display series of that data. We'll display rectangles in series, of which height depends on the value of the data set. If you remember well, we draw rectangles from the upper left corner. If we want to align them not on that corner, but on a lower one, then we need to make a little maths operation. Curious about which one? Lucky you below is a code with the answer:
+Ok, so, we are getting an interesting idea of the variations of the data set, but haven't yet displayed it as a whole. I'm sure this new point of view will help us get a better understanding of our data set, and hence our random processes. First, let's look at series of our data set as a whole. For that, we'll get back to our first visualization: bar charts. Let's make them vertical charts so that we can have a line per random process, and display many data. Only issue here: how to align well the rectangles? Try to do that by yourself, but if you're stuck, below is a possible answer (for centered behaviors, with span of 100).
 
 ```java
-
-void draw() {
-  background(0);
-
-  for(int i=0; i<200; i++) {  
+  // In draw
+  for(int i=0; i<k; i++) {  
     // 1) Uniform randomness
-    rect( 100+i*4, 150 - dataUniform[i], 3, dataUniform[i]);
-
-    // 2) Gaussian randomness
-    rect( 100+i*4, 300 - dataGaussian[i], 3, dataGaussian[i]);
-
-    // 3) Perlin noise
-    rect( 100+i*4, 450 - dataPerlin[i], 3, dataPerlin[i]);
+    rect( 20+i*4, 150 - dataUniform[i], 3, dataUniform[i]);
+    rect( 20+i*4, 275 - dataGaussian[i], 3, dataGaussian[i]);
+    rect( 20+i*4, 450 - dataPerlin[i], 3, dataPerlin[i]);
+    rect( 20+i*4, 600 - dataPareto[i], 3, dataPareto[i]);
   }
-
-}
 ```
 
 As a little bonus, here is a way to generate new data on the fly:
@@ -215,7 +207,10 @@ Third, in our case we had a simple way of displaying our data set. Many many mor
 
 Last, we have to keep in mind that we displayed all instances of data here, with no specific processing. This is what we're going to look right now.
 
-##d) Making sense of it
+
+##d) 1D, 2D and the rest...
+
+##e) Making sense of it
 
 Visualizing data is never an end in itself (or at least shouldn't...). It's one of the tools used to make sense of data, one of many, and barely ever to be used alone. In our case, we can process a bit our data to try to make more sense of it. But how to process data? It depends on the data you have. How to know the data you have? Process and visualize it. You might start seeing there is a little issue somewhere... It's not an impossible process, just an iterative one. There are no direct answer, it's more of an exploration. Then again, with experience you will learn to recognize both patterns in data before hand and associated first tools of exploration. Beside, different processes and visualizations will show data under different angle.
 
