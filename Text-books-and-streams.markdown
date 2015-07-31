@@ -13,7 +13,7 @@ We have in mind to let you play with three kind of text: twitter streams, books 
 
 Ah, easy pea, we already use a library! But this time ... it's not a Processing library. Oh my god! But then how can they communicate? Alien translator? Telepathy? Almost. While Processing is a language on its own, it's actually a over-set of another well known programming language: Java. Whatever you might know or will learn in Java,  you can reuse in Processing. This is doubly interesting: first, you have all the power of Java at your hands, all its structure, functions...; second, you can reuse any Java library, like the one we'll be using to feed on Twitter. Download it [here](http://twitter4j.org/archive/twitter4j-4.0.2.zip). In the *lib* folder, you will found the *twitter4j-core-4.0.2.jar* file. Extract it in safe place and then drag and drop the extracted file on your opened processing sketch. You should see at the bottom "one file added to the sketch".
 
-Now, library is installed. Unfortunately, to be able to use it Twitter requests you to have some identification. For that, you need to register a twitter account. Then visit https://app.twitter.com/ and login. Click on *Create an app*, fill out the form (you can put random info) and agree to the developer terms. You should arrive at a page with among others the *Consumer key* and the *Consumer secret*. Click on *Generate my access Token* and you should get the two last info we need: the *Access Token* and the *Access Token Secret*. Good, now before reading those tweets, let's learn how they are stored in the library.
+Now, library is installed. Unfortunately, to be able to use it Twitter requests you to have some identification. For that, you need to register a twitter account. Then visit https://apps.twitter.com/ and login. Click on *Create an app*, fill out the form (you can put random info) and agree to the developer terms. You should arrive at a page with among others the *Consumer key* and the *Consumer secret*. Click on *Generate my access Token* and you should get the two last info we need: the *Access Token* and the *Access Token Secret*. Good, now before reading those tweets, let's learn how they are stored in the library.
 
 ##b) A new data structure
 While arrays are pretty nice, their size is hard defined at first, and can't change. It's both sad and not so much practical. Instead here we'll use an *ArrayList* which is working pretty much the same, but better. While we'll have to handle it, our future usage will be pretty simple, but let's first see a bit how it works.
@@ -227,17 +227,19 @@ For next episode, we'll try to make it a stream.
 
 By the way, while it often results in a big mash-up pot of incoherency, you migth want to mix visualizations. You know how to handle text, tweet, getting data from the web and display it on a map. Does that spawn any crazy idea? If so, try them out!
 
-## b) Books
+## b) Books and DNA
+
 Speaking about next episodes... There aren't enough hours in a night (and even less in a day), so the next two parts are ideas rather than real material. Don't hesitate to voice your ideas on those!
 
 Getting books from [project Guntenberg](http://www.gutenberg.org/)
 Parsing lines.
 Same than before can be tried.
-Frequency of a word in a book
+Frequency of a word in a book + Comparison between books over time
+Displaying sentences that start with "I am" or "I have" or other. Comparison with other book to study style of a book.
 Study the evolution of usage of a word over time.
 Tree of words: Which words follow which (N tuplets...)
 
-## c) DNA
-Getting Human Genome from [project Guntenberg](http://www.gutenberg.org/ebooks/author/856)
+DNA: Getting Human Genome from [project Guntenberg](http://www.gutenberg.org/ebooks/author/856)
+Looking for repetitions, patterns, frequency of letters and codon. Depending on signification of codon ...
 
-Absolutely no idea yet, but it'll be great! Maybe thanks to you if you have already an idea!
+## c) RSS
