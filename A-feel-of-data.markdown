@@ -63,32 +63,29 @@ Great, we have a fitting way to store data. Now, let's see what kind of data set
 
 We will now use this method to study not data set, but data set generator, and more precisely randomness function. Randomness is a topic that could have its own workshop (any takers?!), but right now we'll focus on 4 kind of noises: White noise, Gaussian noise, Perlin noise and Pareto noise. While other [colors of noise](https://en.wikipedia.org/wiki/Colors_of_noise) are out of scope of this workshop, a bit of culture never hurt anyone.
 
-Let's first generate our data set and have a quick look at them, we will then try to understand them from what is displayed.
+All the following code is meant to be tested in the draw function, which will repeat it very quickly over time, hence giving the impression of showing multiple value of a data set and a graphical appreciation of it.
 
-// SEPARATE EACH formula's code, and exlain it bits by bits.
+First of all, uniform randomness, otherwise called *white noise*. You can try to generate different kind of noises by feeding uniform noise in complex functions (logarithm, cosines, square root, mash up those ...).
 
 ```java
-void setup() {
-  size(displayWidth, displayHeight);
-  fill(255);
-  noStroke();
-}
-
-void draw() {
-  background(0);
-  float k;
-  
-  // 1) Uniform randomness, white noise
-  int limit = 100;
-  k = random(0,limit);
+  int limit = 100; // Defines the span of random values
+  float k = random(0,limit);
   ellipse(100,250,k,k);
- 
-  // 2) Gaussian randomness
+```
+
+We see here a *classic* random. There is no link between values and the chance to end up with one value is the same all over the scope.
+
+Second, let's see about Gaussian randomness. If you've heard of the normal distribution, that's the same thing. If you haven't, well, you're going to discover it now! It's a distribution that is centered over a mean, and the further you are from the mean, the less likely the value is to be picked at random. How fast this chance drop is characterized by the deviation. By default, the mean is 0 and the deviation is 1.
+
+```java
   int mean = 70;
   int deviation = 30;
   k = deviation * randomGaussian() + mean;
   ellipse(300,250,k,k);
- 
+```
+Similar behavior than previously, but we see already that the randomness appear as centered.
+
+
   // 3) Perlin noise
   float x = frameCount/100.0;
   k = 100 * noise(x);
