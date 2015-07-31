@@ -11,5 +11,6 @@ Thank github pages :D
 http://www.tylerlhobbs.com/writings/probability-distributions-for-artists
 
 Todo:
+- Create little game data set where some specific information needs to be got (like one value is very different, we have two clusters, ...) and ask what this info is. Should be hard to see by the numbers, but easy to tell by finding a good visualisation.
 - One more log: Graphs & Networks (Wikipedia nodes?)
 - One more log (or part): RSS feeds. Inspiration: http://btk.tillnagel.com/tutorials/rss-feeds-processing.html
