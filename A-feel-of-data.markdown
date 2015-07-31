@@ -65,7 +65,7 @@ We will now use this method to study not data set, but data set generator, and m
 
 All the following code is meant to be tested in the draw function, which will repeat it very quickly over time, hence giving the impression of showing multiple value of a data set and a graphical appreciation of it.
 
-### Uniform randomness
+#### Uniform randomness
 Otherwise called *white noise*. You can try to generate different kind of noises by feeding uniform noise in complex functions (logarithm, cosines, square root, mash up those ...).
 
 ```java
@@ -76,7 +76,8 @@ Otherwise called *white noise*. You can try to generate different kind of noises
 
 We see here a *classic* random. There is no link between values and the chance to end up with one value is the same all over the scope.
 
-Second, let's see about Gaussian randomness. If you've heard of the normal distribution, that's the same thing. If you haven't, well, you're going to discover it now! It's a distribution that is centered over a mean, and the further you are from the mean, the less likely the value is to be picked at random. How fast this chance drop is characterized by the deviation. By default, the mean is 0 and the deviation is 1.
+##### Gaussian randomness
+If you've heard of the normal distribution, that's the same thing. If you haven't, well, you're going to discover it now! It's a distribution that is centered over a mean, and the further you are from the mean, the less likely the value is to be picked at random. How fast this chance drop is characterized by the deviation. By default, the mean is 0 and the deviation is 1.
 
 ```java
   int mean = 70;
@@ -86,7 +87,8 @@ Second, let's see about Gaussian randomness. If you've heard of the normal distr
 ```
 Similar behavior than previously, but we see already that the randomness appear as centered.
 
-Third, Perlin noise, a very famous noise in computer graphic (among others, for procedural texture).
+#### iiii) Perlin noise
+A very famous noise in computer graphic (among others, for procedural texture). In order to use that evolution, we need values that follow each other. For that, we'll use as a counter the frame count which can be refered to as .... frameCount. Who would have guessed? You might want to explore feeding it with counters of different steps, or even sightly random counters.
 
 ```java
   float x = frameCount/100.0;
