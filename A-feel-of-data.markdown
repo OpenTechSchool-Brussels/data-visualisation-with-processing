@@ -65,7 +65,7 @@ We will now use this method to study not data set, but data set generator, and m
 
 All the following code is meant to be tested in the draw function, which will repeat it very quickly over time, hence giving the impression of showing multiple value of a data set and a graphical appreciation of it.
 
-#### Uniform randomness
+##### i) Uniform randomness
 Otherwise called *white noise*. You can try to generate different kind of noises by feeding uniform noise in complex functions (logarithm, cosines, square root, mash up those ...).
 
 ```java
@@ -76,7 +76,7 @@ Otherwise called *white noise*. You can try to generate different kind of noises
 
 We see here a *classic* random. There is no link between values and the chance to end up with one value is the same all over the scope.
 
-##### Gaussian randomness
+##### ii) Gaussian randomness
 If you've heard of the normal distribution, that's the same thing. If you haven't, well, you're going to discover it now! It's a distribution that is centered over a mean, and the further you are from the mean, the less likely the value is to be picked at random. How fast this chance drop is characterized by the deviation. By default, the mean is 0 and the deviation is 1.
 
 ```java
@@ -87,7 +87,7 @@ If you've heard of the normal distribution, that's the same thing. If you haven'
 ```
 Similar behavior than previously, but we see already that the randomness appear as centered.
 
-#### iiii) Perlin noise
+##### iii) Perlin noise
 A very famous noise in computer graphic (among others, for procedural texture). In order to use that evolution, we need values that follow each other. For that, we'll use as a counter the frame count which can be refered to as .... frameCount. Who would have guessed? You might want to explore feeding it with counters of different steps, or even sightly random counters.
 
 ```java
@@ -96,27 +96,41 @@ A very famous noise in computer graphic (among others, for procedural texture). 
   ellipse(500,250,k,k);
 ```
 
-Here we see a random process, but more alike of an evolution.
+While still random, the process here is more alike of an evolution. This is why it's so appreciate in computer graphic: for its natural vibes. 
 
-  // 4) Pareto noise
-  int ym = 1;
+##### iv) Pareto noise
+Ok, this one is a bit hardcore, a distribution from the power law family of distribution. Yep, they have families. This one is pretty cool because of the repartition it creates. Spread, but with groups. Alas, it's sometimes hard to get a fitting zoom around the values, so you need sometimes to play with the parameters... On top of a bit complex math (no need to understand it, but you might want to write the expression on paper to realize what you're doing), we're using a new function: *pow(a,b)* which takes *a* and makes it to the power of *b*, its better known representation is a^b.
+
+```java
+  int xm = 1;
   int a = 3;
-  float y = ym + random(10);
-  k = 100 * ( a * pow(ym, a) / pow(y, a+1) );
+  float x = xm + random(10);
+  k = 100 * ( a * pow(xm, a) / pow(x, a+1) );
   ellipse(700,250,k,k);
-
-}
 ```
 
-Hmm, a lot to look at, both in how they are created (not our main job here) and on what to understand of their behavior from what is displayed. But first of all, take a step back and don't underestimate your achievement: you have here the whole shebang here, getting data, using it, visualizing it. And not a so bad visualization since you can already decipher patterns in them. From this simple (but already dynamic!) visualization, you can already get a feeling of what all those random process are doing. First one is chaotic, the next one bears less bounds, but is more centered on a value, the following one is more of an evolution over time and the last one can have pretty unexpected bursts!
+Ok, that's a lot to process. Thankfully it is not your task but that of the machine. Work machine! An interesting result. Pretty small in average, but with sudden burst at occasions, usually in the same spans of length.
 
-// EXPLANATION ABOUT THE CODE AND FORMULA
+As said, it's hard sometimes to lock on the fitting range of output. The notion of boundaries is particularly important in data visualisation. Sometimes your data set reach far, but it's a specific part you want to show. If you get the far values of, you might be lying about the size relations of your inner dataset. If you include the far values, it means you're on a bigger scale, which might make the rest of your data set super dense and not very legible. While sometimes you can change for instance your scale (from linear to logarithmic for instance), there are no definite answer. Don't try to lie about or hide data, don't force a message, just try to use it for what it is.
 
-//Boundaries => some time you're out of visualisation, hard to find the good scale (other exist than linear SOURCE, for another time, enough of maths alredy).
+##### v) Data set
+Well, firstly, time to take a step back and to not underestimate your achievement: you have here the whole shebang here, getting data, using it, visualizing it. And that over multiple sources of information. Moreover, a not so bad visualization since we already managed to decipher a few patterns and understand the underlying information. From this simple (but already dynamic!) visualization, you can already get a feeling of what all those random process are doing.
 
-In the rest of this section, we'll use arrays of such random values, called dataUniform, dataGaussian, dataPerlin and dataPareto. Don't forget to create them and fill them with value in the setup function!
+In the rest of this section we won't use isolated values but set of those. Inspire yourself of the first part of this section where we fed an array to create similar data set for each random processes. We will refer later on to them as *dataUniform*, *dataGaussian*, *dataPerlin* and *dataPareto*. If you're a bit lost, just use the following pattern:
 
-On a side note, we have only one data set by random process. You're invited to modify our previous code and make it possible to create multiple data set per random process to study the variations inside a same process (and for much coolness, because rendering many of them looks kinda neat).
+```java
+// At the root
+float[] dataSetTest;
+```
+
+```java
+// In setup
+  dataSetTest = new float[30];
+  for( int i = 0; i < dataSetTest.length; i++)
+    dataSetTest[i] = 0; // replace with the corresponding formula
+```
+
+On a side note, we have only one data set by random process. You're invited to modify our previous code and make it possible to create multiple data set per random process to study the variations inside a same process and also to be able to use many of them at once, like for instance in the following section!
 
 ##c) 1D, 2D and the rest...
 
