@@ -168,8 +168,7 @@ We mostly shapes & size to reflect the quality of a data set, let's try explorin
   }
 ```
 
-
-Variations in color are actually pretty hard to grasp for the human eye. Colors should usually be restricted to either show big variation over big distances, or to highlight specific part of a data set. Choosing the right colour is often a pretty complex process, and would require a whole workshop for it. Try to play with other shades, cold to warm (avoid the rainbow), gray to saturate... You might want to go check out this great resource from Nasa : [link](http://www.earthobservatory.nasa.gov/blogs/elegantfigures/2013/08/05/subtleties-of-color-part-1-of-6)
+Variations in color are actually pretty hard to grasp for the human eye. Colors should usually be restricted to either show big variation over big distances, or to highlight specific part of a data set. Choosing the right colour is often a pretty complex process, and would require a whole workshop for it. Try to play with other shades, cold to warm (avoid the rainbow), gray to saturate... You might want to go check out this great resource from Nasa : [link](http://www.earthobservatory.nasa.gov/blogs/elegantfigures/2013/08/05/subtleties-of-color-part-1-of-6).
 
 By the way, the line of data was pretty long, way to long to be displayed on one line, that could almost call for the usage of other lines, paving the way for other dimensions...
 
@@ -200,7 +199,7 @@ Still, let's already how that would play for our data set, as a way to learn to 
 
 Neat way to display and organize data. But ... there is one data set that can actually really be two dimensional (or even n dimensional), it's the Perlin noise which can take two variables as input. Try it with i and j as inputs.
 
-Ok, and since you've came this far, a little present. Try to explore by modifying the behavior and parameters.
+Since you've come this far, a little present. Try to explore by modifying the behavior and parameters.
 
 ```java
   // In draw function
@@ -219,6 +218,7 @@ Ok, and since you've came this far, a little present. Try to explore by modifyin
   }
   }
 ```
+
 Yep, classy as hell. And this is data you're visualizing. Not the classic kind of data, but data none the less, and pretty important and useful one, you'd be surprise how many software and studies are based on them. For added glory, try to have different value of *varI* *varJ*. Oh, and try to not reset each offset at each loop iteration but rather make those value evolve... Eerie results, digital design is never too far from digital art.
 
 ##e) Making sense of it
@@ -227,13 +227,11 @@ Visualizing data is never an end in itself. It's one of the tools used to make s
 
 It's not an impossible process, just an iterative one. There are no direct answer, it's more of an exploration. Then again, with experience you will learn to recognize both patterns in data before hand and associated first tools of exploration. Beside, different processes and visualizations will show data under different angle.
 
-// FRQUENCY
+We've seen up to know data one by one, then as a set. Now let's study this set. A classic paradigm shift is to not study occurrences of values but their frequency. This means recording how many times some data occur, and plot not the data but that new information: their repartition.
 
-In our case we have a lot of data, mostly between 0 and 100. We might want to study them not case by case, but more their repartition. Let's study how many times those random variable are spread among that 0 and 100, aka their frequency.
+To do that, let's create four arrays as global variables (hence defined at the root of your code) named *freqUniform*, *freqGaussian*, *freqPerlin* and *freqPareto*.
 
-To do that, let's create three arrays as global variables (like the preceding ones):
-
-And then process the information. How? We'll just read the data, and for instance, when a value is between 9 and 10, we add one to the frequency array, at index 9. We do that for all data, and all possible values, and tada! Step back a little, and try to do that on your own. Even if you don't manage to do it, it's good to try your brain on it a little. Experience don't only come from coding, but on thinking how you'd code something.
+Let's now fill them. How? We'll just read the data bits by bits, as a stream, and log there value. For instance, when a value is between 9 and 10, we add one to the frequency array at index 9. We do that for the complete data set and tada! While this might still be a bit fuzzy, step back a little and try to do that on your own. Even if you don't manage to do it, it's good to try your brain on it a little. Experience don't only come from coding but also from thinking how you'd code something.
 
 ```java
   // In setup (after having creating them at the root)
@@ -243,6 +241,7 @@ And then process the information. How? We'll just read the data, and for instanc
     freqUniform[i] = 0;
     freqGaussian[i] = 0;
     freqPerlin[i] = 0;
+    freqPareto[i] = 0;
   }
 
   // Calculate frequency
@@ -251,31 +250,25 @@ And then process the information. How? We'll just read the data, and for instanc
     if (dataGaussian[i] > 0 && dataGaussian[i] < 100)
         freqGaussian[int(dataGaussian[i])] ++;
     freqPerlin[int(dataPerlin[i])] ++;
+    freqPerlin[int(dataPareto[i])] ++;
   }
 }
 ```
+
 If you want to reset this data by pressing a key, don't forget to update the `keyPressed()` function with that new code.
 
-Now let's display it. Same stuff than before. Just remember that we need to loop over an array of size 100, not k.
-
-//GRAPHIC. UP TO YOU TO DO IT.
-
-Neat isn't it? Yes it is. But wait, we lost something along the lines... indeed, we had to comment out the calculus about the Gaussian randomness. Why is that so? Well, there are some times value getting outside of the [0;100] interval, messing with the indexing of the array. What to do then? Well, we need to filter the data. For that, we need to test it, the basic way to do so is called a conditional test. In lay man terms, it means "If a condition is met, then do something (and sometimes: else do something else)". We need a value between 0 and 100, so we need to test for it to be superior than 0 and inferior to 100.
+Now let's display it.
 
 ```java
-
-  for (int i=0; i<k; i++) {
-    //...
-    if (dataGaussian[i] > 0) {
-      if (dataGaussian[i] < 100) {
-        freqGaussian[int(dataGaussian[i])] ++;
-      }
-    }
-  //...
-  }
+// meh
 ```
 
-// SELECTING DATA GAUSSIAN IS BAD FILTERING
+Or actually ... nope. You have already all the tools to do it. If lost, you might want to first try the same bar chart you already used twice. Try that with small data set (and check over a few iterations) and then with bigger data set. You should see a rule of thumb appearing bits by bits and even the outline of functions of distribution. You're getting to the root of what describe the random processes. Here not only did you display existent data, but you formalized in a new way. While we came from distributions function to set of data to visuals, it's actually those visuals that helped finding the mathematical functions associated with some natural random processes in life (the normal distribution of the Gaussian for instance modelise among other stuff flipping of coins, always good to know if you want to gamble!)
+
+Feel proud? You should! But wait... we lost something somewhere... Did you see it? Indeed, we had to filter Gaussian and Pareto values getting outside of the [0;100] range (if not, they would have been messing with the indexing of the array).
+
 Actually... more than filtering, we've been biasing the data... Bad bad us: we lied! For those who didn't realize while we were doing so, we decided to discard data based on the way we wanted to represent it. Not good. If we want to keep similar visualization, one might want to add one last rectangle at start and finish in order to show outliers.
  
-So, here close our section on data discovery. I hope through such simple piece of code you manage to get both a hand on what data can mean, how visualize it can help you understand it, and the basics of chain of process of data. We will see in the upcoming sections different kind of data. Text, DNA, localized information... impossible to go through all of them, but the importance is not to get a master of all of them, but to awaken your sensibility to data and its visualization as a discipline.
+So, here close our section on data discovery. I hope through such simple piece of code you manage to get both a hand on what data can mean, how visualize it can help you understand it, and the basics of chain of process of data.
+
+You will have the occasion to test or reflect about different kind of data in the following sections, text, DNA, localized information... impossible to go through all of them. The importance is not to become a master of all of them but to awaken your sensibility to data and its visualization as a discipline.
