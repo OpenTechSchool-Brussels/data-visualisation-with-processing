@@ -168,7 +168,7 @@ We mostly shapes & size to reflect the quality of a data set, let's try explorin
   }
 ```
 
-Variations in color are actually pretty hard to grasp for the human eye. Colors should usually be restricted to either show big variation over big distances, or to highlight specific part of a data set. Choosing the right colour is often a pretty complex process, and would require a whole workshop for it. Try to play with other shades, cold to warm (avoid the rainbow), gray to saturate... You might want to go check out this great resource from Nasa : [link](http://www.earthobservatory.nasa.gov/blogs/elegantfigures/2013/08/05/subtleties-of-color-part-1-of-6).
+Variations in color are actually pretty hard to grasp for the human eye. Colors should usually be restricted to either show big variation over big distances, or to highlight specific part of a data set. Choosing the right colour is often a pretty complex process, and would require a whole workshop for it. Try to play with other shades, cold to warm (avoid the rainbow), gray to saturate... You might want to go check out this great resource from Nasa: [link](http://www.earthobservatory.nasa.gov/blogs/elegantfigures/2013/08/05/subtleties-of-color-part-1-of-6).
 
 By the way, the line of data was pretty long, way to long to be displayed on one line, that could almost call for the usage of other lines, paving the way for other dimensions...
 
