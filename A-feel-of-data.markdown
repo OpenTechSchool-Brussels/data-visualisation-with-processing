@@ -63,7 +63,7 @@ Great, we have a fitting way to store data. Now, let's see what kind of data set
 
 We will now use this method to study not data set, but data set generator, and more precisely randomness function. Randomness is a topic that could have its own workshop (any takers?!), but right now we'll focus on 4 kind of noises: White noise, Gaussian noise, Perlin noise and Pareto noise. While other [colors of noise](https://en.wikipedia.org/wiki/Colors_of_noise) are out of scope of this workshop, a bit of culture never hurt anyone.
 
-All the following code is meant to be tested in the draw function, which will repeat it very quickly over time, hence giving the impression of showing multiple value of a data set and a graphical appreciation of it.
+All the following code is meant to be tested in the draw function, which will repeat it very quickly over time, hence giving the impression of showing multiple value of a data set and a graphical appreciation of it. For better graphics, put *noStroke();* in the setup function.
 
 ##### i) Uniform randomness
 Otherwise called *white noise*. You can try to generate different kind of noises by feeding uniform noise in complex functions (logarithm, cosines, square root, mash up those ...).
@@ -142,7 +142,6 @@ Ok, so, we are getting an interesting idea of the variations of the data set, bu
 ```java
   // In draw
   for(int i=0; i<k; i++) {  
-    // 1) Uniform randomness
     rect( 20+i*4, 150 - dataUniform[i], 3, dataUniform[i]);
     rect( 20+i*4, 275 - dataGaussian[i], 3, dataGaussian[i]);
     rect( 20+i*4, 450 - dataPerlin[i], 3, dataPerlin[i]);
@@ -150,110 +149,108 @@ Ok, so, we are getting an interesting idea of the variations of the data set, bu
   }
 ```
 
-As a little bonus, here is a way to generate new data on the fly:
+We mostly shapes & size to reflect the quality of a data set, let's try exploring what can be done with color, and more precisely shade of grey.
 
 ```java
-
-void keyPressed() {
+  // In draw
+  for(int i=0; i<k; i++) {      
+    fill(dataUniform[i]/100 * 255);
+    rect( 20+i*4, 150 - 3, 3, 3);
     
-  // We need an offset to have different Perlin noise values
-  float offset = random(0,10000);
+    fill(dataGaussian[i]/100 * 255);
+    rect( 20+i*4, 275 - 3, 3, 3);
     
-  for(int i=0; i<k; i++) {  
-    // 1) Uniform randomness
-    dataUniform[i] = random(0,100);
-    // 2) Gaussian randomness
-    dataGaussian[i] = randomGaussian() * 30 + 50;   
-    // 3) Perlin noise
-    dataPerlin[i] = noise(offset + i/100.0)*100;
+    fill(dataPerlin[i]/100 * 255);
+    rect( 20+i*4, 450 - 3, 3, 3);
+    
+    fill(dataPareto[i]/100 * 255);
+    rect( 20+i*4, 600 - 3, 3, 3);
   }
-  
-}
-
 ```
 
-Let's use this time colour to get a feel of the data. This time, we won't display dynamically all data, we will display them statically at once. For that let's display them over many lines, as a array. We will vary two counters, defining both axis offset and the value to display:
 
-```java
-void draw() {
-  background(0);
-  for(int j=0; j<20; j++) { // characterising yOffset in "ellipse" 
-  for(int i=0; i<100; i++) { // characterising xOffset in "ellipse"
-    // 1) Uniform randomness
-    fill(dataUniform[j*100+i]/100 * 255);
-    ellipse( 50 +i*5, 50 +j*5, 5, 5);
-    
-    // 2) Gaussian randomness
-    fill(dataGaussian[j*100+i]/100 * 255);
-    ellipse( 50 +i*5, 200 +j*5, 5, 5);
+Variations in color are actually pretty hard to grasp for the human eye. Colors should usually be restricted to either show big variation over big distances, or to highlight specific part of a data set. Choosing the right colour is often a pretty complex process, and would require a whole workshop for it. Try to play with other shades, cold to warm (avoid the rainbow), gray to saturate... You might want to go check out this great resource from Nasa : [link](http://www.earthobservatory.nasa.gov/blogs/elegantfigures/2013/08/05/subtleties-of-color-part-1-of-6)
 
-    // 3) Perlin noise
-    fill(dataPerlin[j*100+i]/100 * 255);
-    ellipse( 50 +i*5, 350 +j*5, 5, 5);
-
-  }
-  }
-
-}
-```
-
-Choosing the right colour is often a pretty complex process, and would require a whole workshop for it. Try to play with other shades, cold to warm (avoid the rainbow), gray to saturate... You might want to go check out this great resource from Nasa : [link](http://www.earthobservatory.nasa.gov/blogs/elegantfigures/2013/08/05/subtleties-of-color-part-1-of-6)
-
-Second, up until now we used one dimension data sets. It's not the case for all data set. The dimension of a data set is defined by the number of variable in input, in our case there is only the index, so only one dimension. 
-
-Third, in our case we had a simple way of displaying our data set. Many many more displays can be created, although not as simply. 
-
---next iteration of workshop, heat maps and bubble graph?--
-
-Last, we have to keep in mind that we displayed all instances of data here, with no specific processing. This is what we're going to look right now.
-
+By the way, the line of data was pretty long, way to long to be displayed on one line, that could almost call for the usage of other lines, paving the way for other dimensions...
 
 ##d) 1D, 2D and the rest...
+Ok, that was cheating for transitional purpose. 2D or nD data set are not just 1D data set cut, but information over two variables (like latitude and longitude for global positioning on earth).
+
+Still, let's already how that would play for our data set, as a way to learn to display multiple dimensional set.
+
+```java
+  // In the draw function
+  background(0);
+  for(int i=0; i<k/50; i++) {    
+  for(int j=0; j<50; j++) {      
+    fill(dataUniform[j*k/50+i]/100 * 255);
+    ellipse( 20+i*4, 200 - j*4, 4, 4);
+    
+    fill(dataGaussian[j*k/50+i]/100 * 255);
+    ellipse( 20+i*4, 450 - j*4, 4, 4);
+    
+    fill(dataPerlin[j*k/50+i]/100 * 255);
+    ellipse( 20+i*4, 650 - j*4, 4, 4);
+    
+    fill(dataPareto[j*k/50+i]/100 * 255);
+    ellipse( 20+i*4, 800 - j*4, 4, 4);
+  }
+  }
+```
+
+Neat way to display and organize data. But ... there is one data set that can actually really be two dimensional (or even n dimensional), it's the Perlin noise which can take two variables as input. Try it with i and j as inputs.
+
+Ok, and since you've came this far, a little present. Try to explore by modifying the behavior and parameters.
+
+```java
+  // In draw function
+  background(0);
+
+  float offsetI = random(0,10000);
+  float offsetJ = random(0,10000);
+  
+  float varI = 0.05;
+  float varJ = 0.05;
+  
+  for(int i=0; i<width/4; i++) {    
+  for(int j=0; j<height/4; j++) {      
+    fill(noise(offsetI + i * varI, offsetJ + j * varJ) * 255);
+    ellipse( i*4, j*4, 4, 4);
+  }
+  }
+```
+Yep, classy as hell. And this is data you're visualizing. Not the classic kind of data, but data none the less, and pretty important and useful one, you'd be surprise how many software and studies are based on them. For added glory, try to have different value of *varI* *varJ*. Oh, and try to not reset each offset at each loop iteration but rather make those value evolve... Eerie results, digital design is never too far from digital art.
 
 ##e) Making sense of it
 
-Visualizing data is never an end in itself (or at least shouldn't...). It's one of the tools used to make sense of data, one of many, and barely ever to be used alone. In our case, we can process a bit our data to try to make more sense of it. But how to process data? It depends on the data you have. How to know the data you have? Process and visualize it. You might start seeing there is a little issue somewhere... It's not an impossible process, just an iterative one. There are no direct answer, it's more of an exploration. Then again, with experience you will learn to recognize both patterns in data before hand and associated first tools of exploration. Beside, different processes and visualizations will show data under different angle.
+Visualizing data is never an end in itself. It's one of the tools used to make sense of data, one of many, and barely ever to be used alone. In our case, we can process a bit our data to try to make more sense of it. But how to process data? It depends on the data you have. How to know the data you have? Process and visualize it. You might start seeing there is a little issue somewhere...
+
+It's not an impossible process, just an iterative one. There are no direct answer, it's more of an exploration. Then again, with experience you will learn to recognize both patterns in data before hand and associated first tools of exploration. Beside, different processes and visualizations will show data under different angle.
+
+// FRQUENCY
 
 In our case we have a lot of data, mostly between 0 and 100. We might want to study them not case by case, but more their repartition. Let's study how many times those random variable are spread among that 0 and 100, aka their frequency.
 
 To do that, let's create three arrays as global variables (like the preceding ones):
 
-```java
-float[] freqUniform;
-float[] freqGaussian;
-float[] freqPerlin;
-
-void setup() {
-//Previous code
-// .....
-
-  freqUniform = new float[100];
-  freqGaussian = new float[100];
-  freqPerlin = new float[100];
-}
-```
-
 And then process the information. How? We'll just read the data, and for instance, when a value is between 9 and 10, we add one to the frequency array, at index 9. We do that for all data, and all possible values, and tada! Step back a little, and try to do that on your own. Even if you don't manage to do it, it's good to try your brain on it a little. Experience don't only come from coding, but on thinking how you'd code something.
 
 ```java
-void setup() {
-    // Previous code
-    // ...
+  // In setup (after having creating them at the root)
 
-  // Parsing for frequency
   // Reset to zero
   for (int i=0; i<100; i++) {
     freqUniform[i] = 0;
     freqGaussian[i] = 0;
     freqPerlin[i] = 0;
   }
-  
+
   // Calculate frequency
   for (int i=0; i<k; i++) {
-      freqUniform[int(dataUniform[i])] ++;
-      // No Gaussian yet...
-      // freqGaussian[int(dataGaussian[i])] ++;
-      freqPerlin[int(dataPerlin[i])] ++;
+    freqUniform[int(dataUniform[i])] ++;
+    if (dataGaussian[i] > 0 && dataGaussian[i] < 100)
+        freqGaussian[int(dataGaussian[i])] ++;
+    freqPerlin[int(dataPerlin[i])] ++;
   }
 }
 ```
@@ -261,26 +258,7 @@ If you want to reset this data by pressing a key, don't forget to update the `ke
 
 Now let's display it. Same stuff than before. Just remember that we need to loop over an array of size 100, not k.
 
-```java
-void draw() {
-  background(0);
-  for (int j=0; j<20; j++) {
-    for (int i=0; i<100; i++) {  
-      // 1) Uniform randomness
-      rect( 100+i*4, 150 - freqUniform[i]/2, 3, freqUniform[i]/2);
-      
-      // 2) Gaussian randomness
-      // No Gaussian yet...
-//      rect( 100+i*4, 300 - freqGaussian[i]/2, 3, freqGaussian[i]/2);
-
-      // 3) Perlin noise
-      rect( 100+i*4, 450 - freqPerlin[i]/2, 3, freqPerlin[i]/2);
-         
-    }
-  }
- 
-} 
-```
+//GRAPHIC. UP TO YOU TO DO IT.
 
 Neat isn't it? Yes it is. But wait, we lost something along the lines... indeed, we had to comment out the calculus about the Gaussian randomness. Why is that so? Well, there are some times value getting outside of the [0;100] interval, messing with the indexing of the array. What to do then? Well, we need to filter the data. For that, we need to test it, the basic way to do so is called a conditional test. In lay man terms, it means "If a condition is met, then do something (and sometimes: else do something else)". We need a value between 0 and 100, so we need to test for it to be superior than 0 and inferior to 100.
 
@@ -296,9 +274,8 @@ Neat isn't it? Yes it is. But wait, we lost something along the lines... indeed,
   //...
   }
 ```
-While not entering with both feet in the (amazing and useful) realm of logic, we can simplify our previous code using basic logic connector `and` and `or`. They work same as you would expect in real life, which for us ends up : `if (dataGaussian[i] > 0 && dataGaussian[i] < 100) { .... }`. What lies between the parenthesis is called a condition, resulting as true or false. All you can imagine using logic applies here. Try that new piece of code to display frequency information about Gaussian randomness.
 
-
+// SELECTING DATA GAUSSIAN IS BAD FILTERING
 Actually... more than filtering, we've been biasing the data... Bad bad us: we lied! For those who didn't realize while we were doing so, we decided to discard data based on the way we wanted to represent it. Not good. If we want to keep similar visualization, one might want to add one last rectangle at start and finish in order to show outliers.
  
 So, here close our section on data discovery. I hope through such simple piece of code you manage to get both a hand on what data can mean, how visualize it can help you understand it, and the basics of chain of process of data. We will see in the upcoming sections different kind of data. Text, DNA, localized information... impossible to go through all of them, but the importance is not to get a master of all of them, but to awaken your sensibility to data and its visualization as a discipline.
