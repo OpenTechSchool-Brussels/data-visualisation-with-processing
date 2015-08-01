@@ -257,18 +257,14 @@ Let's now fill them. How? We'll just read the data bits by bits, as a stream, an
 
 If you want to reset this data by pressing a key, don't forget to update the `keyPressed()` function with that new code.
 
-Now let's display it.
+Now let's display it:
 
 ```java
 // meh
 ```
 
-Or actually ... nope. You have already all the tools to do it. If lost, you might want to first try the same bar chart you already used twice. Try that with small data set (and check over a few iterations) and then with bigger data set. You should see a rule of thumb appearing bits by bits and even the outline of functions of distribution. You're getting to the root of what describe the random processes. Here not only did you display existent data, but you formalized in a new way. While we came from distributions function to set of data to visuals, it's actually those visuals that helped finding the mathematical functions associated with some natural random processes in life (the normal distribution of the Gaussian for instance modelise among other stuff flipping of coins, always good to know if you want to gamble!)
+Actually ... nope, no code given this time. You have already all the tools to do it. If lost, you might want to first try the same bar chart you already used twice. Try that with small data set (and check over a few iterations) and then with bigger data set. You should see a rule of thumb appearing bits by bits and even the outline of functions of distribution. You're getting to the root of what describe the random processes. Here not only did you display existent data, but you formalized in a new way. While we came from distributions function to set of data to visuals, it's actually those visuals that helped finding the mathematical functions associated with some natural random processes in life (the normal distribution of the Gaussian for instance modelise among other stuff flipping of coins, always good to know if you want to gamble!)
 
-Feel proud? You should! But wait... we lost something somewhere... Did you see it? Indeed, we had to filter Gaussian and Pareto values getting outside of the [0;100] range (if not, they would have been messing with the indexing of the array).
-
-Actually... more than filtering, we've been biasing the data... Bad bad us: we lied! For those who didn't realize while we were doing so, we decided to discard data based on the way we wanted to represent it. Not good. If we want to keep similar visualization, one might want to add one last rectangle at start and finish in order to show outliers.
+Feel proud? You should! But wait... we lost something somewhere... Did you see it? Indeed, we had to filter Gaussian and Pareto values getting outside of the [0;100] range (if not, they would have been messing with the indexing of the array). Actually... more than filtering, we've been biasing the data... Bad bad us: we lied! For those who didn't realize while we were doing so, we decided to discard data based on the way we wanted to represent it. Not good. If we want to keep similar visualization, one might want to add one last rectangle at start and finish in order to show outliers.
  
-So, here close our section on data discovery. I hope through such simple piece of code you manage to get both a hand on what data can mean, how visualize it can help you understand it, and the basics of chain of process of data.
-
-You will have the occasion to test or reflect about different kind of data in the following sections, text, DNA, localized information... impossible to go through all of them. The importance is not to become a master of all of them but to awaken your sensibility to data and its visualization as a discipline.
+So, here close our section on data discovery. I hope through such simple piece of code you manage to get both a hand on what data can mean, how visualize it can help you understand it, and the basics of chain of process of data. You will have the occasion to test or reflect about different kind of data in the following sections, text, DNA, localized information... impossible to go through all of them. The importance is not to become a master of all of them but to awaken your sensibility to data and its visualization as a discipline.
