@@ -100,7 +100,9 @@ Last but certainly not least, let's display the map in the `draw()` function:
 
 ##d) Drawing over maps
 
-And what about drawing our data you're asking me? Almost as easy! While this library is nice for zooming and navigating, what it's really great for is the fact that it talks nicely between screen position and longitude/latitude. All in all, here how it goes:
+And what about drawing our data you're asking me? Almost as easy! While this library is nice for zooming and navigating, what it's really great for is the fact that it talks nicely between screen position and longitude / latitude with its *map.getScreenPosition* function. You feed it with a location (longitude, latitude) and it will return a screen position (x,y).
+
+Curious to see it in action? Well, you should have all you need to test it out by yourself. If you don't know what to try it on, below is an example:
 
 ```java
 void draw() {
@@ -122,19 +124,18 @@ void draw() {
 }
 ```
 
-Try to play with the various data you have and try to push forward the visualization beyond simple dots displayed on a map. For instance you might make the size of the ellipse depending on the zoom level (you can use `map.getZoom()` for that).
+All you know about graphics in Processing (drawing, images, fonts...) can be used to display any kind of data over a map. Step back a little and try to imagine what you could do with data from the previous section. You can explore too other data set from the online data bank.
 
 ##e) Markers
-Great to have a broad view or where those free wifis are, but when close to one, it'll be even better to actually know the name of the place. Let's display them when hovering about the locations. For that, we'll just need to test if the position of the mouse is close enough to the center of the ellipses.
+It's great to have a broad view or where those free wifis are, but when close to one, it'll be even better to actually know the name of the place. Let's display them when hovering about the locations. For that, we'll just need to test if the position of the mouse is close enough to the center of the ellipses.
 
-So much to learn here! First, you can access both coordinates of the mouse through `mouseX` and `mouseY`. Second, let's learn a new function that will be of much use in the next section: `text(String, posX, posY)` which display a string, at the indicated position. And last, a bit of math for those who wanted (and for the others too...). Did you ever wonder what the *absolute value* (symbol: `abs( val )` ) function does? Surely an amazing feat with such a grandiose name. Well guess, again, it is just the value without caring of the sign ( `abs(3)` -> `3`, `abs(-10.3)` -> `10.3`, ...). Not so grandiose but pretty useful, especially for calculating distances. All that plus a conditional test ends up in the following:
+If you don't remember, access of both mouse's coordinates is done through `mouseX` and `mouseY`. And if you've never displayed any text, it goes through the `text(String, posX, posY)` function, which display a string, at the indicated position. Last, a bit of math for those who wanted (and for the others too...). Did you ever wonder what the *absolute value* (symbol: `abs( val )` ) function does? Surely an amazing feat with such a grandiose name. Well guess, again, it is just the value without caring of the sign ( `abs(3)` -> `3`, `abs(-10.3)` -> `10.3`, ...). Not so grandiose but pretty useful.
+
+All that plus a conditional test ends up in the following:
 
 ```java
+  // In the draw function
 
-void draw() {
-  noStroke();
-  fill(30, 30, 255, 200);
-  
   background(0);  
   map.draw();
 
@@ -150,11 +151,6 @@ void draw() {
     }
     
   } 
-  
-}
 ```
 
-Here you go, basic map visualization. You have already a lot of possibilities for visualization, from past section and this one, don't hesitate to take a little time to explore them. While our visualization are pretty basic, you can push them forward quite easily.
-
-
-
+Here you go, basic map visualization. While our visualizations are pretty basic, you can push them forward quite easily. You might want to study the comic book rout [data set](https://bruxellesdata.opendatasoft.com/explore/dataset/comic-book-route/?tab=metas&location=17,50.84773,4.31135). Many façade are painted with comic books figure in Brussels. Why not find the shortest path with most? Why not generating routes over random positions? Not only can you display a set of data, but you can also filter it to only select the one you want an make an emphasis on it.
