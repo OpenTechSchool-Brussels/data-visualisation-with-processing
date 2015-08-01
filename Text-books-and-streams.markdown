@@ -5,15 +5,15 @@ num: 3
 
 ---
 
-One type of data that is too often forgotten is text data. A shame, since this is where processing filter are kings & queens. Using linguistic and semantics, you can push forward, mine text, and display them in a way you wouldn't have thought possible for a boring linear piece of text.
+One type of data that is too often forgotten is text data. A shame, since this is where processing filters are kings & queens. Using linguistic and semantics, you can push forward, mine text, and display them in a way you wouldn't have thought possible for a boring linear piece of text.
 
-We have in mind to let you play with three kind of text: twitter streams, books and DNA sequences. Let's already start with twitter, we'll see if your lovely organizer had time to stuff the workshop material with more goodness (probably not this time...).
+We have in mind to let you play with three kind of text: twitter streams, books and DNA sequences. Let's already start with twitter, text and DNA will be left to the discretion of the reader.
 
 ## a) Using libraries, again & Twitter dev stuff
 
-Ah, easy pea, we already use a library! But this time ... it's not a Processing library. Oh my god! But then how can they communicate? Alien translator? Telepathy? Almost. While Processing is a language on its own, it's actually a over-set of another well known programming language: Java. Whatever you might know or will learn in Java,  you can reuse in Processing. This is doubly interesting: first, you have all the power of Java at your hands, all its structure, functions...; second, you can reuse any Java library, like the one we'll be using to feed on Twitter. Download it [here](http://twitter4j.org/archive/twitter4j-4.0.2.zip). In the *lib* folder, you will found the *twitter4j-core-4.0.2.jar* file. Extract it in safe place and then drag and drop the extracted file on your opened processing sketch. You should see at the bottom "one file added to the sketch".
+Ah, easy pea, we already use a library! But this time ... it's not a Processing library. Oh my god! But then how can they communicate? Alien translator? Telepathy? Almost. While Processing is a language on its own, it's actually an over-set of another well known programming language: Java. Whatever you might know or will learn in Java,  you can reuse in Processing. This is doubly interesting: first, you have all the power of Java at your hands, all its structure, functions...; second, you can reuse any Java library, like the one we'll be using to feed on Twitter. Download it [here](http://twitter4j.org/archive/twitter4j-4.0.2.zip). In the *lib* folder, you will found the *twitter4j-core-4.0.2.jar* file. Extract it in safe place and then drag and drop the extracted file on your opened processing sketch. You should see at the bottom "one file added to the sketch".
 
-Now, library is installed. Unfortunately, to be able to use it Twitter requests you to have some identification. For that, you need to register a twitter account. Then visit https://apps.twitter.com/ and login. Click on *Create an app*, fill out the form (you can put random info) and agree to the developer terms. You should arrive at a page with among others the *Consumer key* and the *Consumer secret*. Click on *Generate my access Token* and you should get the two last info we need: the *Access Token* and the *Access Token Secret*. Good, now before reading those tweets, let's learn how they are stored in the library.
+Now, the library is installed. Unfortunately, to be able to use it Twitter requests you to have some identification. For that, you need to register a twitter account. Then visit https://apps.twitter.com/ and login. Click on *Create an app*, fill out the form (you can put random info) and agree to the developer terms. You should arrive at a page with among others the *Consumer key* and the *Consumer secret*. Click on *Generate my access Token* and you should get the two last info we need: the *Access Token* and the *Access Token Secret*. Good, now before reading those tweets, let's learn how they are stored in the library.
 
 ##b) A new data structure
 While arrays are pretty nice, their size is hard defined at first, and can't change. It's both sad and not so much practical. Instead here we'll use an *ArrayList* which is working pretty much the same, but better. While we'll have to handle it, our future usage will be pretty simple, but let's first see a bit how it works.
@@ -48,7 +48,6 @@ void setup() {
  int sizeArray = myArray.length;
  int sizeArrayList = myArrayList.size();
 
- exit(); 
 }
 
 void draw() {
@@ -59,7 +58,7 @@ Pretty similar to the arrays right? But much more powerful! Now that we are arme
 
 ##c) Reading some tweets
 
-Now .... sometimes you care, sometimes you don't. While at OTS we pride ourselves on explaining each line of code, sometimes while using more heavy libraries, some part of code might appear that are extremely useful but might be a bit out of league as for assimilation. Not saying it's not important to understand it, but there is a safe margin between "getting it" and being able to recode the whole library... This will be the case here.
+Now .... sometimes you care, sometimes you don't. While we pride ourselves on explaining each line of code, sometimes while using more heavy libraries, some part of code might appear that are extremely useful but might be a bit out of one's league. Not saying it's not important to understand it, but there is a safe margin between "getting it" and being able to recode the whole library... This will be the case here.
 
 So, let's have an overfly of how connecting to twitter works.
 
@@ -103,14 +102,7 @@ Soo ... when to care, and when not to? Well, if you're confident in a piece of c
 Now that we connected, let's launch a query on twitter, this works in the same way as the *search* would on twitter.
 
 ```java
-
-  // Previous code
-  // ...
-
-void setup() {
-
-  // Previous code
-  // ...
+  // In the setup function
 
   // 2) Launching a query
   // A query is an object that will provide us tweets.
@@ -136,41 +128,36 @@ void setup() {
 
 ```
 
-Alas, we got them! Cheery merry tweets! Now that we have the data, you can display them in any form you prefere. Don't hesitate to explore graphical ways to display them, would that be using text or not. You could for instance compare the number of tweets with love and hate and visualize it. Or your could link the color of the screen with upcoming tweets: when "cold" appear you go toward blue, when "hot" appear you go toward red. Many visualization are possible, the one we'll create in the following part of this section has been a basis for numerous digital art installations.
-
-If you're not too much in a rush, you might want to create a `String` global variable that would be used for the query, it'll be much much easier to modify your program. And as a bonus, don't hesitate to put that code too in the `void keyPressed() { ... }` function so you can trigger it with your keyboard.
+Alas, we got them! Cheery merry tweets! Now that we have the data, you can display them in any form you prefer. Want to search for tweets about specific comic books and display them on a map at their street fresco? It's not only great but possible, you have all the tools you need to do so! Don't hesitate to explore graphical ways to display your data, would that be using text or not. Another idea would be for instance to compare the number of tweets with Monday and Friday and visualize it. Or your could link the color of the screen with upcoming tweets: when "cold" appear you go toward blue, when "hot" appear you go toward red. Or you could display each tweet replacing the letters of the tweets by a rectangle with equivalent grey level. Many visualization are possible, the one we'll create in the following part of this section has been a basis for numerous digital art installations.
 
 ##d) Displaying text
 Let's start with displaying those string on the screen and not anymore just as log. For that, we'll use previously discovered function `text(String, posX, posY)` with a few added bonuses. Let's already display it on screen and build from there.
 
 ```java
-void draw() {
+  // In the draw function
   background(0);
   for (int i =0; i < listStatus.size(); i++) {
-    // We use 50 + 50*i for the y value to have each line on there own axis
     text(listStatus.get(i).getText(), 10, 50*i);
   }
-
-}
 ```
 
 Cute but ... text can be better looking. Let's try something simple already: center everything. For that you'll need to put `textAlign(CENTER);` in the `setup()` function. If you launch your code, you'll see that everything is centered but ... on the left borded! This is because you draw at *x=10* defined in the `text(String, posX, posY)` function. You need to change that value foe the middle of the screen. Remember how to do that? If not here is how: `width/2`.
 
-Better looking (is it?) but the font and size is ... not as best as could be. Let's change that. When coding about font, you have to take of a few things before using one. Lucky us, Processing has a built-in tool that simplify the process. Click in the menu on *Tools* -> *Create Font...*. A new interface will pop up, allowing you to chose both the font you want and its size. Once you're done, copy the text of your font (the fileName) and press OK. If you don't remember the name of your font, you can check its file by clicking in the menu on *Sketch* -> *Show Sketch Folder*. In our case, I picked *AGaramondPro-BoldItalic-38.vlw*. Now that it's created, we need to use it. As for all global variable, we'll need to declare it at the root of our code, instantiate in the setup and use it somewhere.
+Better looking (is it?) but the font and size is ... not as best as could be. Let's change that. When coding about font, you have to think of a few things before using one. Lucky us, Processing has a built-in tool that simplify the process. Click in the menu on *Tools* -> *Create Font...*. A new interface will pop up, allowing you to chose both the font you want and its size. Once you're done, copy the text of your font (the fileName) and press OK. If you don't remember the name of your font, you can check its file by clicking in the menu on *Sketch* -> *Show Sketch Folder*. In our case, I picked *AGaramondPro-BoldItalic-38.vlw*. Now that it's created, we need to use it. As for all global variable, we'll need to declare it at the root of our code, instantiate in the setup and use it somewhere.
 
 ```java
+// At the root
 // A new object: PFont. Used to store fonts. (P is for Processing)
 PFont font;
- 
-void setup() {    
-  size(displayWidth, displayHeight);   
+```
+
+```java
+  // In the setup function
   // Loading our font
   font = loadFont("AGaramondPro-BoldItalic-38.vlw");
   
   //Stating that it's the one we'll use from now
   textFont(font);
-
-}
 ```
 
 Since the font is much bigger, you might want to change the layout a bit (or chose a smaller one than I did!).
@@ -185,19 +172,20 @@ The idea is simple. Let's outline what we filtered upon, center on the word, and
 
 In order to separate the string, we'll use the `split(text, separator)`. This function breaks a String into pieces using a character or string as the delimiter, returning those pieces as an array of strings. For instance "I want to eat and to love and to breath" split with delimiter "and" will return the array {"I want to eat ", " to love ", " to breath"}. We'll use that to separate our strings in three. We'll use the word defining the query as a delimiter and voilà!
 
-Being a bit in a rush, here is a working code, explained. Be sure to ask if you're not sure how it works.
+As said, we learn a lot by doing, here is a working example commented:
 
  ```java
-void draw() {    
+  // In the draw function
   background(0);
   
-  // Your query as a variable. If not already done so, put your query instead of "love".
+  // Your query string
   String exp = "love";
 
-for (int i =0; i < listStatus.size(); i++) { // For all tweets
+  for (int i =0; i < listStatus.size(); i++) { // For all tweets
    
     // Separate the tweet
-    String[] list = split(listStatus.get(i).getText(), exp); // if love was your query
+    String[] list = split(listStatus.get(i).getText(), exp);
+
     // We're offsetting the text by the first string and half our query
     float offset=width/2 -textWidth(list[0]) -textWidth(exp)/2;
     
@@ -215,31 +203,25 @@ for (int i =0; i < listStatus.size(); i++) { // For all tweets
     fill(255);
     for(int j=1; j<list.length; j++) { // Display all the remaining strings.
       text(list[j], offset, 50+50*i);
-      offset += textWidth(list[j]); 
-      
+      offset += textWidth(list[j]);   
     }
+
   }
-  
-} 
 ```
 
+You might want to regularly actualize your query and compare with previous tweets and add the potential new ones.
 For next episode, we'll try to make it a stream.
 
-By the way, while it often results in a big mash-up pot of incoherency, you migth want to mix visualizations. You know how to handle text, tweet, getting data from the web and display it on a map. Does that spawn any crazy idea? If so, try them out!
+## d) Books, DNA, RSS...
 
-## b) Books and DNA
+Ok, many many occasion to actually study text and make something out of it. If you're curious about studying text of classic books (or even DNA!) you might want to check [Project Guntenber](http://www.gutenberg.org/) which host many free of use books (some in txt format).
 
-Speaking about next episodes... There aren't enough hours in a night (and even less in a day), so the next two parts are ideas rather than real material. Don't hesitate to voice your ideas on those!
-
-Getting books from [project Guntenberg](http://www.gutenberg.org/)
-Parsing lines.
-Same than before can be tried.
-Frequency of a word in a book + Comparison between books over time
-Displaying sentences that start with "I am" or "I have" or other. Comparison with other book to study style of a book.
-Study the evolution of usage of a word over time.
-Tree of words: Which words follow which (N tuplets...)
-
-DNA: Getting Human Genome from [project Guntenberg](http://www.gutenberg.org/ebooks/author/856)
-Looking for repetitions, patterns, frequency of letters and codon. Depending on signification of codon ...
-
-## c) RSS
+A few example of text data visualization directions you might want to explore:
+* Studying the frequency of letters in a book (compare between books)
+* Studying the frequency of usage of a specific word over time in books
+* Display and enumerate sentence that fits a profile (for instance, starts with "I am" or "I have"), compare between books and try to infer about the style.
+* Study which words are most likely to follow another one
+* Looking for repetition in our DNA
+* Looking for similarities among different chromosomes
+* Visualization of RSS feeds of website, updated in real time, and visualized over a map using the localization of their IP address
+* ...
