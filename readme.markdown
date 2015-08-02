@@ -11,6 +11,7 @@ Thank github pages :D
 http://www.tylerlhobbs.com/writings/probability-distributions-for-artists
 
 Todo:
+- Create a log about music visualisation
 - Check if part on Twitter is worth the hassle of making it work.
 - Check if you can't do instead of Twitter something coming from an HTML page.
 - Talk about RegExp. 
